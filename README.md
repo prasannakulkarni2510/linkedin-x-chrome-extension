@@ -17,25 +17,9 @@
   <img alt="Version 0.2.0" src="https://img.shields.io/badge/version-0.2.0-f5b83d">
 </p>
 
-<p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/prasannakulkarni2510/linkedin-x-chrome-extension@main/docs/media/swipe-mode-tutorial.mp4">
-    <img src="docs/media/tutorial-poster.png" width="820" alt="Watch the 2-minute Swipe Mode tutorial">
-  </a>
-  <br>
-  <sub>▶ <a href="https://cdn.jsdelivr.net/gh/prasannakulkarni2510/linkedin-x-chrome-extension@main/docs/media/swipe-mode-tutorial.mp4">Watch the 2-minute tutorial</a>: install, every shortcut, LinkedIn and X.</sub>
-</p>
-
-<p align="center">
-  <a href="https://cdn.jsdelivr.net/gh/prasannakulkarni2510/linkedin-x-chrome-extension@main/docs/media/swipe-mode-tutorial.mp4">
-    <img src="docs/media/tutorial-poster.png" width="820" alt="Watch the 2-minute Swipe Mode tutorial">
-  </a>
-  <br>
-  <sub>▶ <a href="https://cdn.jsdelivr.net/gh/prasannakulkarni2510/linkedin-x-chrome-extension@main/docs/media/swipe-mode-tutorial.mp4">Watch the 2-minute tutorial</a>: install, every shortcut, LinkedIn and X.</sub>
-</p>
-
-
 https://github.com/user-attachments/assets/84857ef6-d1d7-4890-8d0d-12f9d434f0cb
 
+<p align="center"><sub>The 2-minute tutorial: install, every shortcut, LinkedIn and X.</sub></p>
 
 ---
 
