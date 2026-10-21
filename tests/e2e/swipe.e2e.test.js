@@ -242,3 +242,24 @@ test('dragging the grip handle with a mouse swipes and never selects text', asyn
     else await waitAuthor(page, 'Elena Sorensen');
   }
 });
+
+test('failure and help dialogs sit on top of the card, not behind it', async (t) => {
+  const page = await withFeed(t, { scenario: 'broken' });
+  await start(page);
+  const onTop = (sel) =>
+    page.evaluate((s) => {
+      const root = document.getElementById('swipe-mode-root').shadowRoot;
+      const el = root.querySelector(s);
+      const r = el.getBoundingClientRect();
+      const hit = root.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+      return !!hit && el.contains(hit);
+    }, sel);
+  await page.keyboard.press('KeyR');
+  await page.keyboard.press('Digit2');
+  await page.locator('[data-sm="failure"]').waitFor({ timeout: 8000 });
+  assert.equal(await onTop('[data-sm="failure"]'), true);
+  await page.keyboard.press('Escape');
+  await page.keyboard.press('Shift+Slash');
+  await page.locator('[data-sm="help"]').waitFor();
+  assert.equal(await onTop('[data-sm="help"]'), true);
+});

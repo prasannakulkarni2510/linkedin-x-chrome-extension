@@ -255,7 +255,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .sm-panel .sm-row-btns { justify-content: center; }
 
 /* Dialogs over the card */
-.sm-modal-layer { position: absolute; inset: 0; display: grid; place-items: center; padding: 16px; }
+.sm-modal-layer { position: absolute; inset: 0; z-index: 6; display: grid; place-items: center; padding: 16px; background: rgba(0, 0, 0, 0.18); }
 .sm-dialog { width: min(440px, 100%); background: var(--card); border-radius: 16px; box-shadow: var(--shadow); padding: 22px; }
 .sm-dialog h2 { margin: 0 0 6px; font-size: 18px; }
 .sm-dialog p { margin: 0 0 16px; color: var(--muted); }
