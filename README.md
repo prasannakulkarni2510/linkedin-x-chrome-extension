@@ -16,10 +16,24 @@ Built from `linkedin-swipe-extension-prd.md`. Choices the PRD left open are reco
 
 ## Install
 
-1. Open `chrome://extensions` in Chrome.
-2. Turn on **Developer mode** (top right).
-3. Click **Load unpacked** and choose the `extension` folder in this project.
-4. Open (or reload) your LinkedIn feed or your X timeline (x.com/home).
+Swipe Mode is not on the Chrome Web Store. Install it from this repository:
+
+1. Get the code, either way:
+   - **Download:** on the repository page, click **Code**, then **Download ZIP**. Unzip it.
+   - **Clone:**
+     ```bash
+     git clone https://github.com/prasannakulkarni2510/linkedin-x-chrome-extension.git
+     ```
+2. Open `chrome://extensions` in Chrome.
+3. Turn on **Developer mode** (top right).
+4. Click **Load unpacked** and choose the `extension` folder inside the downloaded or cloned
+   folder. Choose `extension`, not the top-level folder.
+5. Open (or reload) your LinkedIn feed or your X timeline (x.com/home).
+
+No `npm install` is needed to use the extension. That is only for running the tests.
+
+**Update:** download the ZIP again (or run `git pull`), then click the reload icon on the Swipe Mode
+card in `chrome://extensions` and reload your LinkedIn or X tab.
 
 **On X** the same keys apply with X's actions: `R` Like (no picker), `C` Reply, `S` Bookmark, and
 engage `3` Repost, `4` Quote. Keys never reach X's own shortcuts while Swipe Mode is open. See
