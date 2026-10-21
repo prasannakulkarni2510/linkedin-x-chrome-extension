@@ -1,0 +1,90 @@
+{
+  "manifest_version": 3,
+  "name": "Swipe Mode",
+  "short_name": "Swipe Mode",
+  "version": "0.2.0",
+  "description": "Read LinkedIn and X posts one at a time. Skip left, consider engaging right. Every action stays your explicit choice.",
+  "minimum_chrome_version": "120",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "https://x.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+  "action": {
+    "default_title": "Start or stop Swipe Mode",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+  "commands": {
+    "toggle-swipe-mode": {
+      "suggested_key": {
+        "default": "Alt+Shift+S"
+      },
+      "description": "Start or stop Swipe Mode"
+    }
+  },
+  "options_page": "options/options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.linkedin.com/*"
+      ],
+      "js": [
+        "src/linkedin/site.js",
+        "src/core/ids.js",
+        "src/core/queue.js",
+        "src/core/keymap.js",
+        "src/core/gesture.js",
+        "src/core/pacing.js",
+        "src/core/catalog.js",
+        "src/core/settings.js",
+        "src/core/dom.js",
+        "src/linkedin/selectors.js",
+        "src/linkedin/detector.js",
+        "src/linkedin/actions.js",
+        "src/linkedin/guards.js",
+        "src/ui/styles.js",
+        "src/ui/overlay.js",
+        "src/content/main.js"
+      ],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://x.com/*"
+      ],
+      "js": [
+        "src/x/site.js",
+        "src/core/ids.js",
+        "src/core/queue.js",
+        "src/core/keymap.js",
+        "src/core/gesture.js",
+        "src/core/pacing.js",
+        "src/core/catalog.js",
+        "src/core/settings.js",
+        "src/core/dom.js",
+        "src/x/selectors.js",
+        "src/x/detector.js",
+        "src/x/actions.js",
+        "src/x/guards.js",
+        "src/ui/styles.js",
+        "src/ui/overlay.js",
+        "src/content/main.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Swipe Mode settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <h1>Swipe Mode</h1>
+    <p class="lead">Read LinkedIn and X posts one at a time. Every reaction, like, comment, reply, repost, save and bookmark is your explicit choice and goes through the site's own buttons.</p>
+
+    <section>
+      <h2>After an action</h2>
+      <label class="row">
+        <span>Wait before moving to the next post<small>Gives you time to press Esc and do a second action on the same post (for example react, then comment).</small></span>
+        <select id="graceMs">
+          <option value="0">Move on right away</option>
+          <option value="1000">1 second</option>
+          <option value="1500">1.5 seconds</option>
+          <option value="2500">2.5 seconds</option>
+          <option value="4000">4 seconds</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <h2>Between posts</h2>
+      <label class="row">
+        <span>Pause before the next post appears<small>A short empty moment so one post never blurs into the next.</small></span>
+        <select id="postGapMs">
+          <option value="0">None</option>
+          <option value="300">Short (0.3 s)</option>
+          <option value="450">Medium (0.45 s)</option>
+          <option value="800">Long (0.8 s)</option>
+          <option value="1200">Very long (1.2 s)</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <h2>Queue</h2>
+      <label class="row"><span>Leave out Promoted posts</span><input type="checkbox" id="excludePromoted"></label>
+      <label class="row"><span>Show the floating Swipe Mode button on LinkedIn and X<small>You can always start with Alt+Shift+S or the toolbar icon.</small></span><input type="checkbox" id="showLauncher"></label>
+    </section>
+
+    <section>
+      <h2>Pacing guard</h2>
+      <p class="note">LinkedIn and X restrict accounts that act faster than a person normally would. The guard slows down actions that change things on either site. One guard covers each open tab. Skipping and reading are never limited.</p>
+      <label class="row"><span>Pacing guard on</span><input type="checkbox" id="pacingEnabled"></label>
+      <label class="row"><span>Minimum time between actions</span>
+        <select id="minGapMs">
+          <option value="1000">1 second</option>
+          <option value="1500">1.5 seconds</option>
+          <option value="3000">3 seconds</option>
+          <option value="5000">5 seconds</option>
+        </select>
+      </label>
+      <label class="row"><span>Most actions per 10 minutes</span><input type="number" id="maxPerTenMinutes" min="1" max="200" step="1"></label>
+    </section>
+
+    <p id="saved" class="saved" role="status"></p>
+
+    <section>
+      <h2>Diagnostics</h2>
+      <p class="note">If Swipe Mode can't find posts or buttons, the site probably changed its page. Open your LinkedIn feed or X timeline in a tab, then run this to see what Swipe Mode can detect. Nothing is sent anywhere.</p>
+      <button id="diag" type="button">Check my LinkedIn or X tab</button>
+      <button id="probe" type="button">Inspect page layout</button>
+      <button id="copyOut" type="button" hidden>Copy result</button>
+      <pre id="diagOut" hidden></pre>
+    </section>
+
+    <section>
+      <h2>Good to know</h2>
+      <ul class="note">
+        <li>LinkedIn's help pages say third-party extensions that modify or automate LinkedIn are not allowed and can lead to account restrictions. Use Swipe Mode at your own risk.</li>
+        <li>X's automation rules prohibit automated likes, reposts and replies. Swipe Mode acts only when you pick an action, but X can still treat extension activity as automation. Use it at your own risk.</li>
+        <li>Swipe Mode keeps nothing after you exit: no history, no account, no server.</li>
+      </ul>
+    </section>
+  </main>
+  <script src="../src/core/settings.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

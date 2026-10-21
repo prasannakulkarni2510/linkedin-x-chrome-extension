@@ -1,0 +1,17 @@
+{
+  "bgm": {
+    "path": "assets/bgm/track.wav",
+    "mode": "detached-seed-loop",
+    "volume": 0.9,
+    "duration_s": null
+  },
+  "bgm_pending": true,
+  "bgm_provider": "musicgen",
+  "bgm_pid": 27884,
+  "bgm_log": "C:\\Users\\SEZ6322\\Desktop\\New folder\\linkedin-chrome\\videos\\swipe-mode-tutorial\\assets\\bgm\\bgm-1792571622173.log",
+  "bgm_mode": "detached-seed-loop",
+  "bgm_target_duration_s": 66,
+  "voices": [],
+  "sfx": [],
+  "total_duration_s": 0
+}

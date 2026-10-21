@@ -1,0 +1,15 @@
+{
+  "name": "swipe-mode",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chrome extension: process LinkedIn posts one at a time with swipe and keyboard decisions.",
+  "scripts": {
+    "test": "node --test \"tests/unit/*.test.js\"",
+    "e2e": "node dev/build-test-extension.js && node --test --test-concurrency=1 \"tests/e2e/*.e2e.test.js\"",
+    "serve": "node dev/serve.js",
+    "icons": "node dev/make-icons.js"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

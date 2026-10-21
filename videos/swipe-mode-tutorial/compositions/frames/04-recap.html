@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #eef3f1;
+          font-family: "Montserrat", sans-serif;
+          color: #13201d;
+        }
+        #recap-dots {
+          position: absolute;
+          inset: -40px;
+          background-image: radial-gradient(#0f766e 2.2px, transparent 2.4px);
+          background-size: 44px 44px;
+          opacity: 0.12;
+        }
+        #recap-glow {
+          position: absolute;
+          right: -200px;
+          top: 120px;
+          width: 1300px;
+          height: 1300px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(15, 118, 110, 0.24) 0%, rgba(15, 118, 110, 0) 65%);
+        }
+        #recap-ghost {
+          position: absolute;
+          left: -30px;
+          bottom: -110px;
+          font-weight: 900;
+          font-size: 380px;
+          letter-spacing: -0.05em;
+          color: #0f766e;
+          opacity: 0.1;
+          line-height: 1;
+        }
+        #recap-label {
+          position: absolute;
+          left: 140px;
+          top: 120px;
+          font: 700 26px "JetBrains Mono", monospace;
+          letter-spacing: 0.12em;
+          color: #0f766e;
+        }
+        #recap-head {
+          position: absolute;
+          left: 140px;
+          top: 190px;
+          width: 560px;
+          font-weight: 900;
+          font-size: 120px;
+          line-height: 1;
+          letter-spacing: -0.05em;
+        }
+        #recap-head-2 {
+          color: #0f766e;
+        }
+        #recap-close {
+          position: absolute;
+          left: 140px;
+          top: 610px;
+          width: 560px;
+          font-weight: 700;
+          font-size: 46px;
+          line-height: 1.25;
+          letter-spacing: -0.02em;
+        }
+        #recap-note {
+          position: absolute;
+          left: 140px;
+          top: 800px;
+          width: 560px;
+          font-size: 28px;
+          line-height: 1.45;
+          color: #4b5b57;
+        }
+        #recap-grid {
+          position: absolute;
+          right: 140px;
+          top: 170px;
+          width: 1000px;
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 28px;
+        }
+        .recap-card {
+          height: 300px;
+          border-radius: 28px;
+          background: #ffffff;
+          border: 3px solid #13201d;
+          box-shadow: 0 10px 0 #13201d;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 30px;
+          opacity: 0;
+        }
+        .recap-cap {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 110px;
+          height: 110px;
+          padding: 0 22px;
+          border-radius: 20px;
+          background: #eef3f1;
+          border: 3px solid #13201d;
+          font: 700 50px "JetBrains Mono", monospace;
+        }
+        .recap-cap-small {
+          font-size: 38px;
+        }
+        .recap-name {
+          font-weight: 700;
+          font-size: 34px;
+          letter-spacing: -0.01em;
+        }
+      </style>
+
+      <div data-hf-id="hf-j4xe" id="root" data-composition-id="recap" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-flzr" id="recap-dots"></div>
+        <div data-hf-id="hf-akmp" id="recap-glow" data-layout-allow-overflow></div>
+        <div data-hf-id="hf-jns7" id="recap-ghost" data-layout-allow-overflow>KEYS</div>
+
+        <div data-hf-id="hf-56kq" id="recap-label">RECAP</div>
+        <div data-hf-id="hf-3m2d" id="recap-head">
+          <div data-hf-id="hf-lf5g" id="recap-head-1">Eight keys.</div>
+          <div data-hf-id="hf-4jwa" id="recap-head-2">That's it.</div>
+        </div>
+        <div data-hf-id="hf-c48w" id="recap-close">Every action stays your choice.</div>
+        <div data-hf-id="hf-hz70" id="recap-note">Change the pacing and auto-advance in Options: right-click the toolbar icon.</div>
+
+        <div data-hf-id="hf-7jun" id="recap-grid">
+          <div data-hf-id="hf-1n44" class="recap-card"><div data-hf-id="hf-pm2u" class="recap-cap">&#8592;</div><div data-hf-id="hf-1slo" class="recap-name">Skip</div></div>
+          <div data-hf-id="hf-0mf0" class="recap-card"><div data-hf-id="hf-qeow" class="recap-cap">&#8594;</div><div data-hf-id="hf-7hpw" class="recap-name">Engage</div></div>
+          <div data-hf-id="hf-zfhx" class="recap-card"><div data-hf-id="hf-jajk" class="recap-cap">R</div><div data-hf-id="hf-7zsq" class="recap-name">React</div></div>
+          <div data-hf-id="hf-ztsy" class="recap-card"><div data-hf-id="hf-cjc3" class="recap-cap">C</div><div data-hf-id="hf-2p34" class="recap-name">Comment</div></div>
+          <div data-hf-id="hf-1tc3" class="recap-card"><div data-hf-id="hf-iw8j" class="recap-cap">S</div><div data-hf-id="hf-yi5u" class="recap-name">Save</div></div>
+          <div data-hf-id="hf-27n4" class="recap-card"><div data-hf-id="hf-gied" class="recap-cap">U</div><div data-hf-id="hf-zfqp" class="recap-name">Undo</div></div>
+          <div data-hf-id="hf-10q1" class="recap-card"><div data-hf-id="hf-kbxz" class="recap-cap">?</div><div data-hf-id="hf-n6fo" class="recap-name">Help</div></div>
+          <div data-hf-id="hf-1f12" class="recap-card"><div data-hf-id="hf-elej" class="recap-cap recap-cap-small">Esc</div><div data-hf-id="hf-reyv" class="recap-name">Exit</div></div>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        const D = 8;
+
+        tl.fromTo("#recap-glow", { scale: 0.94 }, { scale: 1.06, duration: D / 2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+        tl.fromTo("#recap-dots", { x: 0, y: 0 }, { x: 26, y: 20, duration: D, ease: "none" }, 0);
+        tl.fromTo("#recap-ghost", { x: -20 }, { x: 40, duration: D, ease: "none" }, 0);
+
+        tl.fromTo("#recap-label", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.05);
+        tl.fromTo("#recap-head-1", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 0.15);
+        tl.fromTo("#recap-head-2", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.5, ease: "power4.out" }, 0.35);
+
+        // Grid assemble: each card slides a short way into its own slot, row by row.
+        tl.fromTo(".recap-card", { opacity: 0, y: 46, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out", stagger: 0.08 }, 0.6);
+        tl.fromTo(".recap-cap", { scale: 0.7 }, { scale: 1, duration: 0.5, ease: "back.out(2.2)", stagger: 0.08 }, 0.7);
+
+        tl.fromTo("#recap-close", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 2.0);
+        tl.fromTo("#recap-note", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 2.5);
+
+        // Hold: the whole grid floats gently; a final fade closes the film.
+        tl.fromTo("#recap-grid", { y: 0 }, { y: -10, duration: 2.4, ease: "sine.inOut", yoyo: true, repeat: 1 }, 2.6);
+        tl.fromTo("#root", { opacity: 1 }, { opacity: 0, duration: 0.6, ease: "power1.in" }, D - 0.6);
+
+        window.__timelines["recap"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

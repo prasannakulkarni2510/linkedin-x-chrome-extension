@@ -1,0 +1,107 @@
+{
+  "tts_provider": "kokoro",
+  "voice_id": "bf_emma",
+  "bgm": null,
+  "bgm_pending": false,
+  "bgm_provider": null,
+  "bgm_pid": null,
+  "bgm_log": null,
+  "bgm_mode": null,
+  "bgm_target_duration_s": null,
+  "bgm_seed_duration_s": null,
+  "bgm_loop_count": null,
+  "voices": [
+    {
+      "id": "title",
+      "path": "assets/voice/title.wav",
+      "duration_s": 3.563,
+      "words": []
+    },
+    {
+      "id": "install",
+      "path": "assets/voice/install.wav",
+      "duration_s": 5.632,
+      "words": []
+    },
+    {
+      "id": "start",
+      "path": "assets/voice/start.wav",
+      "duration_s": 2.965,
+      "words": []
+    },
+    {
+      "id": "read",
+      "path": "assets/voice/read.wav",
+      "duration_s": 1.877,
+      "words": []
+    },
+    {
+      "id": "skip",
+      "path": "assets/voice/skip.wav",
+      "duration_s": 1.792,
+      "words": []
+    },
+    {
+      "id": "undo",
+      "path": "assets/voice/undo.wav",
+      "duration_s": 2.091,
+      "words": []
+    },
+    {
+      "id": "engage",
+      "path": "assets/voice/engage.wav",
+      "duration_s": 3.477,
+      "words": []
+    },
+    {
+      "id": "react",
+      "path": "assets/voice/react.wav",
+      "duration_s": 1.941,
+      "words": []
+    },
+    {
+      "id": "confirm",
+      "path": "assets/voice/confirm.wav",
+      "duration_s": 2.731,
+      "words": []
+    },
+    {
+      "id": "comment",
+      "path": "assets/voice/comment.wav",
+      "duration_s": 3.136,
+      "words": []
+    },
+    {
+      "id": "save",
+      "path": "assets/voice/save.wav",
+      "duration_s": 1.536,
+      "words": []
+    },
+    {
+      "id": "help",
+      "path": "assets/voice/help.wav",
+      "duration_s": 2.197,
+      "words": []
+    },
+    {
+      "id": "swipe",
+      "path": "assets/voice/swipe.wav",
+      "duration_s": 1.664,
+      "words": []
+    },
+    {
+      "id": "exit",
+      "path": "assets/voice/exit.wav",
+      "duration_s": 3.115,
+      "words": []
+    },
+    {
+      "id": "recap",
+      "path": "assets/voice/recap.wav",
+      "duration_s": 2.347,
+      "words": []
+    }
+  ],
+  "sfx": [],
+  "total_duration_s": 40.064
+}

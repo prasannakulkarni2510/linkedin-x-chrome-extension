@@ -1,0 +1,8 @@
+node_modules/
+dev/.test-extension/
+dev/.recordings/
+videos/**/renders/
+videos/**/.thumbnails/
+videos/**/.waveform-cache/
+*.log
+.DS_Store

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo Feed (mock)</title>
+  <link rel="stylesheet" href="mock-feed.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <span class="brand">Demo Feed</span>
+      <input class="search" placeholder="Search" aria-label="Search">
+      <nav class="topnav"><a href="#">Home</a><a href="#">Network</a><a href="#">Jobs</a><a href="#">Messages</a><a href="#">Me</a></nav>
+    </div>
+  </header>
+  <div class="notice">Mock page with fictional people and posts. Mirrors LinkedIn's post markup so Swipe Mode can be tested offline.</div>
+  <main class="layout">
+    <aside class="side side--left">
+      <div class="panel">
+        <div class="panel__cover"></div>
+        <div class="panel__name">Jordan Avery</div>
+        <div class="panel__muted">Product lead · demo account</div>
+      </div>
+    </aside>
+    <section class="center">
+      <div class="panel composer">Start a post</div>
+      <div id="feed" class="feed" aria-label="Feed"></div>
+      <div id="feed-loader" class="loader" hidden>Loading more posts…</div>
+      <div id="feed-end" class="feed-end" hidden>You're all caught up.</div>
+    </section>
+    <aside class="side side--right">
+      <div class="panel">
+        <div class="panel__title">Trending</div>
+        <ul class="news"><li>Design systems at scale</li><li>Hiring slows in Q4</li><li>New EU AI rules explained</li><li>Remote work, year six</li></ul>
+      </div>
+    </aside>
+  </main>
+  <div class="msg-dock">Messaging</div>
+  <section class="artdeco-toasts_toasts" aria-live="polite"><ul id="toasts"></ul></section>
+  <script src="mock-feed.js"></script>
+  <script src="mock-feed-v2.js"></script>
+</body>
+</html>

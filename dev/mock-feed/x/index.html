@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo Timeline (mock X)</title>
+  <link rel="stylesheet" href="/x/mock-x.css">
+</head>
+<body>
+  <div class="shell">
+    <nav class="side">
+      <div class="logo">Demo</div>
+      <a href="#">Home</a><a href="#">Explore</a><a href="#">Notifications</a><a href="#">Messages</a><a href="#">Bookmarks</a><a href="#">Profile</a>
+    </nav>
+    <main class="column">
+      <header class="tabs"><span class="tab is-on">For you</span><span class="tab">Following</span></header>
+      <div class="notice">Mock page with fictional people and posts. Mirrors X's post markup (data-testid attributes) so Swipe Mode can be tested offline.</div>
+      <div id="timeline" aria-label="Timeline: Your Home Timeline"></div>
+      <div id="loader" class="loader" hidden>Loading…</div>
+    </main>
+    <aside class="trends"><div class="panel"><b>What's happening</b><p>Design systems</p><p>Remote work</p><p>Small models</p></div></aside>
+  </div>
+  <div id="layers"></div>
+  <div id="toasts" class="toasts"></div>
+  <script src="/x/mock-x.js"></script>
+</body>
+</html>
