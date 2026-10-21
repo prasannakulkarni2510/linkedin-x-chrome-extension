@@ -18,11 +18,11 @@
 </p>
 
 <p align="center">
-  <a href="docs/media/swipe-mode-tutorial.mp4">
+  <a href="https://cdn.jsdelivr.net/gh/prasannakulkarni2510/linkedin-x-chrome-extension@main/docs/media/swipe-mode-tutorial.mp4">
     <img src="docs/media/tutorial-poster.png" width="820" alt="Watch the 2-minute Swipe Mode tutorial">
   </a>
   <br>
-  <sub>▶ <a href="docs/media/swipe-mode-tutorial.mp4">Watch the 2-minute tutorial</a>: install, every shortcut, LinkedIn and X.</sub>
+  <sub>▶ <a href="https://cdn.jsdelivr.net/gh/prasannakulkarni2510/linkedin-x-chrome-extension@main/docs/media/swipe-mode-tutorial.mp4">Watch the 2-minute tutorial</a>: install, every shortcut, LinkedIn and X.</sub>
 </p>
 
 ---
