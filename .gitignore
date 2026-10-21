@@ -6,3 +6,10 @@ videos/**/.thumbnails/
 videos/**/.waveform-cache/
 *.log
 .DS_Store
+# Kept local, not published: the video's HyperFrames project and its footage tooling,
+# one-off console snippets, and personal drafts. The finished video lives in docs/media/.
+videos/
+dev/record-demo*.js
+dev/prep-v2-footage.js
+dev/linkedin-probe.js
+docs/linkedin-post.md
