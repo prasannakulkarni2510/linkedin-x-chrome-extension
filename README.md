@@ -22,6 +22,10 @@
   </a>
 </p>
 
+
+https://github.com/user-attachments/assets/070ebad4-9ba1-480b-9e0f-d3460185f7fb
+
+
 <p align="center"><sub>Click to watch the 72-second tour: LinkedIn and X from the keyboard, and tweet screenshots. With voice and subtitles.</sub></p>
 
 ---
