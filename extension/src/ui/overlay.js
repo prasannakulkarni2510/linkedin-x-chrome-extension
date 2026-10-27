@@ -56,6 +56,7 @@
       ['C', L.comment],
       ['S', L.save],
       ['O', 'Open on ' + site.name + ' in a background tab'],
+      site.id === 'x' ? ['P', 'Screenshot with replies'] : null,
       ['U', 'Undo the last skip'],
       ['Space / ↓ / PgDn', 'Read further'],
       ['Shift+Space / ↑ / PgUp', 'Read back'],
@@ -69,7 +70,7 @@
       ['R / C / S / →', 'Another action on this post'],
     ],
     engage: [
-      ['1–8', 'Pick an action'],
+      [site.id === 'x' ? '1–9' : '1–8', 'Pick an action'],
       ['R', site.singleReaction ? L.react : 'Reactions'],
       ['C', L.comment],
       ['Esc / ←', 'Back'],
@@ -490,7 +491,7 @@
       fill(
         help,
         h('h2', { text: 'Keyboard shortcuts' }),
-        h('dl', null, rows.map(([k, d]) => [h('dt', null, kbd(k)), h('dd', { text: d })])),
+        h('dl', null, rows.filter(Boolean).map(([k, d]) => [h('dt', null, kbd(k)), h('dd', { text: d })])),
         h('div', { class: 'sm-help-foot', text: 'Trackpad: swipe left to skip, right to engage. Mouse: drag the card, or long-press it for the engage menu. Press ? or Esc to close.' })
       );
     }

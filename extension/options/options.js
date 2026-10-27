@@ -67,4 +67,15 @@
     copyBtn.textContent = 'Copied';
     setTimeout(() => (copyBtn.textContent = 'Copy result'), 1500);
   });
+
+  // Screenshot folder: picked in the folder page; the service worker knows where it is.
+  async function showFolder() {
+    const res = await chrome.runtime.sendMessage({ type: 'swipe-mode:folder-info' }).catch(() => null);
+    const name = res && res.folder;
+    document.getElementById('shotFolder').textContent = name ? `Saves to “${name}”` :'No folder chosen yet';
+    document.getElementById('shotChange').textContent = name ? 'Change folder' : 'Choose folder';
+  }
+  document.getElementById('shotChange').addEventListener('click', () => chrome.runtime.sendMessage({ type: 'swipe-mode:choose-folder' }));
+  addEventListener('focus', showFolder);
+  showFolder();
 })();

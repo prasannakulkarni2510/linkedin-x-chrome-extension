@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Swipe Mode",
   "short_name": "Swipe Mode",
-  "version": "0.2.0",
-  "description": "Read LinkedIn and X posts one at a time. Skip left, consider engaging right. Every action stays your explicit choice.",
+  "version": "0.3.0",
+  "description": "Read LinkedIn and X posts one at a time, and save X posts with their replies as square screenshots. Every action stays your explicit choice.",
   "minimum_chrome_version": "120",
   "icons": {
     "16": "icons/icon16.png",
@@ -16,7 +16,10 @@
   ],
   "host_permissions": [
     "https://www.linkedin.com/*",
-    "https://x.com/*"
+    "https://x.com/*",
+    "https://pbs.twimg.com/*",
+    "https://abs.twimg.com/*",
+    "https://video.twimg.com/*"
   ],
   "background": {
     "service_worker": "src/background/service-worker.js"
@@ -38,6 +41,16 @@
   },
   "options_page": "options/options.html",
   "content_scripts": [
+    {
+      "matches": [
+        "https://www.linkedin.com/*",
+        "https://x.com/*"
+      ],
+      "js": [
+        "src/core/early-keys.js"
+      ],
+      "run_at": "document_start"
+    },
     {
       "matches": [
         "https://www.linkedin.com/*"
@@ -82,7 +95,9 @@
         "src/x/guards.js",
         "src/ui/styles.js",
         "src/ui/overlay.js",
-        "src/content/main.js"
+        "src/content/main.js",
+        "src/x/shot-render.js",
+        "src/x/shot.js"
       ],
       "run_at": "document_idle"
     }

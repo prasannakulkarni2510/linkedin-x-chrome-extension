@@ -98,3 +98,45 @@ Dragging on post text selects it, which made swiping by mouse unreliable. The ca
 bar at the top and a grip zone between Skip and Engage. Dragging a handle always swipes and never
 selects text. The author header, badges and footer are not selectable, and any selection is
 cleared when a horizontal swipe starts. Post text stays selectable on purpose.
+
+## Tweet screenshots (0.3.0)
+
+- **Drawn, not captured.** The image is redrawn on a canvas from the post’s data (name, handle,
+  badge, text, photos), not a screen capture. That gives a clean 1:1 frame on white regardless of
+  theme, window size or what else is on screen, and needs no extra screen-capture permission.
+- **Square fit.** The layout width is chosen so the content is as close to square as possible, then
+  scaled to 1080×1080. Many long replies make the text smaller rather than cropping it.
+- **Inside Swipe Mode.** `P` on the card and slot `9` in X's engage menu. The panel docks on the
+  right and the card moves left; Swipe Mode passes keys to it (Space, Tab, Enter) but never to X.
+- **Replies come from the post page.** X only loads replies there. From the timeline, the service
+  worker opens the post in a background tab next to yours, the content script there reads the
+  replies (waiting until no new ones arrive, scrolling further for "Load more"), and the tab closes,
+  so Swipe Mode and your place in the timeline stay put. X's API would avoid the tab but needs its
+  private query ids, which change often. Replies are remembered once seen, because X unmounts
+  posts while you scroll.
+- **Only replies.** Replies end at the first section heading below the post (X's "Discover more",
+  which lists recommended posts). Ads are left out. Found by structure (a heading outside any
+  post), not wording, so it works in any language; if X ever puts a heading above its replies,
+  this is the place to look.
+- **Long replies.** X cuts long replies off at "Show more" too. Such replies are marked in the list,
+  and picking one fetches its full text from its own page in a background tab, one at a time.
+  Saving waits for those fetches.
+- **Folder.** Chosen once with Chrome’s folder picker in an extension window. The folder handle
+  lives in the extension’s own storage and the background worker writes the file, so x.com never
+  gets access to the folder. Chrome may ask to allow it again after a restart.
+- **Full text.** The timeline cuts long posts off at "Show more". The post's own page shows all of
+  it, so the full text comes from there: from the background tab, or from the page itself when
+  you're on it. Saving before it arrives saves the cut-off text.
+- **Badge colours.** Blue badges take the badge's colour; gold (organisations) and grey (government)
+  badges are filled with a gradient, so their colour is read from the gradient instead.
+- **Photos.** X’s image servers don’t let x.com read pixels, so the background worker fetches
+  avatars and photos (new host permissions for pbs/abs/video.twimg.com). Videos use their poster.
+- **X only.** LinkedIn has no equivalent yet.
+
+## Keys before the site's (0.3.0)
+
+`O` did nothing on live X while clicking "Show more on X" worked. X listens for keys on `window`
+in the capture phase too (`o` expands a photo), and its listeners were added before Swipe Mode's,
+which load at document_idle, so X saw the key first. A tiny content script now runs at
+document_start (`src/core/early-keys.js`), adds the first `window` listeners on the page, and the
+controller registers its key handling through it.

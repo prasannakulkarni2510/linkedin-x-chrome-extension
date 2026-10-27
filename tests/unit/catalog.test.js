@@ -83,6 +83,7 @@ test('X catalog: one reaction (Like) and X labels in the same fixed slots', () =
       [6, 'open', 'Open on X'],
       [7, 'copyLink', 'Copy link'],
       [8, 'viewProfile', "View author's profile"],
+      [9, 'screenshot', 'Screenshot'],
     ]
   );
   assert.equal(x.reactionBySlot(2), null);

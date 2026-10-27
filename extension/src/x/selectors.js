@@ -16,6 +16,7 @@
     header: ['[data-testid="socialContext"]'],
     userName: ['[data-testid="User-Name"]'],
     userLink: ['[data-testid="User-Name"] a[href^="/"]:not([href*="/status/"])', '[data-testid="Tweet-User-Avatar"] a[href^="/"]'],
+    verified: ['[data-testid="icon-verified"]'],
     avatar: ['[data-testid="Tweet-User-Avatar"] img', '[data-testid^="UserAvatar-Container"] img'],
     time: ['time'],
 
@@ -27,6 +28,9 @@
     card: ['[data-testid="card.wrapper"]'],
     // A quoted post: a link-role block inside the post that carries its own author line.
     quote: ['div[role="link"]:has([data-testid="User-Name"])'],
+    // Section headings in the post page's list, outside any post. Replies end at the first one
+    // ("Discover more": posts X recommends, not replies).
+    sectionHeading: ['[data-testid="cellInnerDiv"] h2', '[data-testid="cellInnerDiv"] [role="heading"]'],
 
     actionBar: ['[role="group"]'],
     like: ['button[data-testid="like"]'],

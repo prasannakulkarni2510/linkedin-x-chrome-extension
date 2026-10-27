@@ -124,6 +124,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .sm-ghost { position: absolute; pointer-events: none; z-index: 3; }
 .sm-stage > .sm-stack, .sm-stage > .sm-card { grid-area: 1 / 1; }
 .sm-stage > .sm-panel { grid-area: 1 / 1; }
+/* The screenshot panel (src/x/shot.js) docks on the right; keep the card clear of it. */
+@media (min-width: 900px) { .sm-overlay[data-mode="shot"] .sm-stage { padding-right: 416px; } }
 .sm-card { z-index: 2; }
 .sm-stack { align-self: center; background: var(--card); border-radius: 8px; box-shadow: var(--shadow); pointer-events: none; }
 .sm-stack-1 { transform: translateY(14px) scale(0.96); opacity: 0.75; z-index: 1; }

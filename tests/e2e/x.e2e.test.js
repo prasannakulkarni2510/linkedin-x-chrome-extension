@@ -190,3 +190,12 @@ test('x: queue refills from the timeline and ends with a no-more-posts state', a
   await end.waitFor({ timeout: 15000 });
   assert.match(await end.innerText(), /X has nothing more to load/);
 });
+
+test("x: O opens the post even though X's own window-level shortcut wants the o key", async (t) => {
+  const page = await withX(t);
+  await start(page);
+  await waitAuthor(page, 'Priya Nair');
+  await page.keyboard.press('KeyO');
+  await page.locator('[data-sm="overlay"]', { hasText: 'Opened in a background tab' }).waitFor({ timeout: 3000 });
+  assert.equal(await shortcutsFired(page), 0);
+});

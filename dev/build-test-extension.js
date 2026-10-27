@@ -17,6 +17,8 @@ function build() {
   manifest.content_scripts.forEach((cs) => {
     if (cs.js.includes('src/x/site.js')) {
       cs.matches.push(...LOCAL.map((h) => h + '/x/*'));
+    } else if (!cs.js.includes('src/linkedin/site.js')) {
+      cs.matches.push(...LOCAL.map((h) => h + '/*')); // shared by both sites (early-keys.js)
     } else {
       cs.matches.push(...LOCAL.map((h) => h + '/*'));
       cs.exclude_matches = LOCAL.map((h) => h + '/x/*');

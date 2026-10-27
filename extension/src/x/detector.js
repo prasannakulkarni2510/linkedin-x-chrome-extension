@@ -227,5 +227,5 @@
     return { path: anon(location.pathname), hits, post: post ? node(post, 0) : 'none' };
   }
 
-  NS.detector = { findPostElements, hasPosts, extract, scan, resolve, locate, refresh, expandText, readReaction, diagnostics, layoutProbe };
+  NS.detector = { findPostElements, hasPosts, quoteOf, extract, scan, resolve, locate, refresh, expandText, readReaction, diagnostics, layoutProbe };
 })(globalThis);

@@ -24,6 +24,7 @@
     KeyC: 'openComment',
     KeyS: 'save',
     KeyO: 'openPost',
+    KeyP: 'screenshot',
     KeyU: 'undo',
     KeyX: 'exitHere',
     Escape: 'exit',
@@ -64,14 +65,17 @@
         return ev.code === 'Escape' ? { type: 'stay' } : mainCmd(ev);
       case 'engage': {
         if (ev.code === 'Escape' || ev.code === 'ArrowLeft') return { type: 'back' };
+        if (isHelpKey(ev)) return { type: 'help' };
         const d = digit(ev.code);
-        if (d !== null) return d >= 1 && d <= 8 ? { type: 'engageSlot', slot: d } : noop();
+        if (d !== null) return d >= 1 && d <= 9 ? { type: 'engageSlot', slot: d } : noop();
         if (ev.code === 'KeyR') return { type: 'openReactions' };
         if (ev.code === 'KeyC') return { type: 'openComment' };
+        if (ev.code === 'KeyP') return { type: 'screenshot' };
         return scrollCmd(ev);
       }
       case 'reaction': {
         if (ev.code === 'Escape' || ev.code === 'ArrowLeft') return { type: 'back' };
+        if (isHelpKey(ev)) return { type: 'help' };
         const d = digit(ev.code);
         if (d === 0) return { type: 'removeReaction' };
         if (d !== null) return d <= 6 ? { type: 'react', slot: d } : noop();
@@ -92,6 +96,9 @@
         return ev.code === 'Escape' ? { type: 'exit' } : noop();
       case 'busy':
         return noop();
+      // The screenshot panel is open: its own keys (see shotKey in src/x/shot.js).
+      case 'shot':
+        return ev.code === 'Escape' || ev.code === 'KeyP' ? { type: 'closeShot' } : { type: 'shotKey', code: ev.code, shift: !!ev.shiftKey, help: isHelpKey(ev) };
       default:
         return null;
     }
@@ -108,7 +115,7 @@
     if (ev.ctrlKey || ev.metaKey || ev.altKey || ev.code === 'Tab') return null;
     const cmd = commandFor(state, ev);
     if (!cmd) return null;
-    if (ev.repeat && cmd.type !== 'scroll') return noop();
+    if (ev.repeat && cmd.type !== 'scroll' && cmd.type !== 'shotKey') return noop();
     return cmd;
   }
 

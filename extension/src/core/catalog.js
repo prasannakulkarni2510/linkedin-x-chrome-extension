@@ -43,6 +43,7 @@
         { slot: 6, id: 'open', label: 'Open on X', key: 'O', mutating: false },
         { slot: 7, id: 'copyLink', label: 'Copy link', mutating: false },
         { slot: 8, id: 'viewProfile', label: "View author's profile", mutating: false },
+        { slot: 9, id: 'screenshot', label: 'Screenshot', key: 'P', mutating: false },
       ],
     },
   };

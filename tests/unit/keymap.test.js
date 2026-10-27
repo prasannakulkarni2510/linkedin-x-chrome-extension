@@ -78,7 +78,17 @@ test('IME composition always passes through', () => {
 test('engage: digits pick fixed slots from the top row or numpad', () => {
   assert.deepEqual(resolveKey('engage', ev('Digit3')), { type: 'engageSlot', slot: 3 });
   assert.deepEqual(resolveKey('engage', ev('Numpad5')), { type: 'engageSlot', slot: 5 });
-  assert.deepEqual(resolveKey('engage', ev('Digit9')), { type: 'noop' });
+  assert.deepEqual(resolveKey('engage', ev('Digit9')), { type: 'engageSlot', slot: 9 });
+  assert.deepEqual(resolveKey('engage', ev('Digit0')), { type: 'noop' });
+});
+
+test('screenshot: P opens it from the card or the engage menu; Esc or P closes it', () => {
+  assert.deepEqual(resolveKey('main', ev('KeyP')), { type: 'screenshot' });
+  assert.deepEqual(resolveKey('engage', ev('KeyP')), { type: 'screenshot' });
+  assert.deepEqual(resolveKey('shot', ev('Escape')), { type: 'closeShot' });
+  assert.deepEqual(resolveKey('shot', ev('KeyP')), { type: 'closeShot' });
+  assert.deepEqual(resolveKey('shot', ev('Space')), { type: 'shotKey', code: 'Space', shift: false, help: false });
+  assert.equal(resolveKey('shot', ev('Tab')), null);
 });
 
 test('engage: Escape and ArrowLeft go back', () => {
@@ -131,6 +141,12 @@ test('failure: Enter retries, Escape continues, O opens the post', () => {
 test('end: Enter scans again, Escape exits', () => {
   assert.deepEqual(resolveKey('end', ev('Enter')), { type: 'rescan' });
   assert.deepEqual(resolveKey('end', ev('Escape')), { type: 'exit' });
+});
+
+test('help: ? also opens from the engage menu and the reaction list', () => {
+  assert.deepEqual(resolveKey('engage', ev('Slash', { shiftKey: true, key: '?' })), { type: 'help' });
+  assert.deepEqual(resolveKey('reaction', ev('Slash', { shiftKey: true, key: '?' })), { type: 'help' });
+  assert.equal(resolveKey('shot', ev('Slash', { shiftKey: true, key: '?' })).help, true);
 });
 
 test('help: Escape, ? or H close it and other keys are swallowed', () => {

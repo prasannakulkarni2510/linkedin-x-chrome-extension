@@ -18,6 +18,7 @@
     {
       name: 'Priya Nair', handle: 'priyabuilds', time: '2h', hue: 12, showMore: true,
       text: 'We cut our on-call pages by 62% this quarter without hiring anyone.\n\nEvery alert needs an owner and a runbook, or it gets deleted. Noisy-but-harmless alerts moved to a daily digest.',
+      rest: '\n\nThe last step was the hardest: deleting alerts nobody could explain. Nothing broke.',
     },
     { name: 'Marcus Webb', handle: 'marcuswebb', time: '5h', hue: 210, image: true, text: 'Six months of tracking where our design hours go. Meetings about the design took longer than the design.' },
     { name: 'Brightline Analytics', handle: 'brightline', promoted: true, hue: 280, text: 'Dashboards your finance team will actually open. Start a free trial today.' },
@@ -94,7 +95,7 @@
     return h(
       'div',
       { 'data-testid': 'User-Name' },
-      h('div', { class: 'name' }, h('a', { href: '/' + p.handle, role: 'link' }, h('span', null, p.name))),
+      h('div', { class: 'name' }, h('a', { href: '/' + p.handle, role: 'link' }, h('span', null, p.name)), p.verified ? h('span', { 'data-testid': 'icon-verified', class: 'badge', 'aria-label': 'Verified account' }) : null),
       h('div', { class: 'muted' }, h('a', { href: '/' + p.handle, role: 'link', tabindex: '-1' }, h('span', null, '@' + p.handle))),
       withTime && p.time ? h('div', { class: 'muted' }, h('span', null, '·')) : null,
       withTime && p.time ? h('div', { class: 'muted' }, h('a', { href: '/' + p.handle + '/status/' + p.id, role: 'link' }, h('time', { datetime: '2026-10-21T08:00:00.000Z' }, p.time))) : null
@@ -104,8 +105,8 @@
   function article(p) {
     const body = [];
     body.push(h('div', { class: 'head' }, userName(p, true), p.promoted ? h('div', { class: 'ad' }, h('span', null, 'Ad')) : null, h('button', { 'data-testid': 'caret', 'aria-label': 'More', type: 'button' }, '…')));
-    body.push(h('div', { 'data-testid': 'tweetText', lang: 'en', dir: 'auto' }, h('span', null, p.text)));
-    if (p.showMore) body.push(h('button', { type: 'button', 'data-testid': 'tweet-text-show-more-link', class: 'show-more', onclick: () => (location.href = '/' + p.handle + '/status/' + p.id) }, 'Show more'));
+    body.push(h('div', { 'data-testid': 'tweetText', lang: 'en', dir: 'auto' }, h('span', null, p.focal && p.rest ? p.text + p.rest : p.text), p.emoji ? h('img', { alt: '😂', src: svg('<circle cx="9" cy="9" r="9" fill="gold"/>', 18, 18), class: 'emoji' }) : null));
+    if (p.showMore && !p.focal) body.push(h('button', { type: 'button', 'data-testid': 'tweet-text-show-more-link', class: 'show-more', onclick: () => (location.href = '/' + p.handle + '/status/' + p.id) }, 'Show more'));
     if (p.image) body.push(h('div', { 'data-testid': 'tweetPhoto' }, h('img', { alt: 'Image', src: photo(p) })));
     if (p.video) body.push(h('div', { 'data-testid': 'videoComponent', class: 'video' }, h('video', { poster: photo(p), muted: true }), '▶'));
     if (p.poll) body.push(h('div', { 'data-testid': 'cardPoll', class: 'poll' }, p.poll.map((o) => h('div', null, o))));
@@ -177,8 +178,9 @@
   }
 
   let loading = false;
+  let postPage = false; // the post page loads replies, not more timeline
   function maybeLoad() {
-    if (loading || cells.length >= TOTAL) return;
+    if (loading || cells.length >= TOTAL || postPage) return;
     if (scrollY + innerHeight < document.documentElement.scrollHeight - 600) return;
     loading = true;
     document.getElementById('loader').hidden = false;
@@ -276,6 +278,19 @@
     editor.focus();
   }
 
+  // X also listens on window in the capture phase, registered long before a document_idle content
+  // script could. o expands the photo: it takes the key for itself.
+  window.addEventListener(
+    'keydown',
+    (e) => {
+      const t = e.target;
+      if (e.key !== 'o' || e.ctrlKey || e.metaKey || e.altKey || (t && (t.isContentEditable || /^(INPUT|TEXTAREA)$/.test(t.tagName)))) return;
+      shortcutsFired++;
+      e.stopImmediatePropagation();
+    },
+    true
+  );
+
   // --- X's own single-letter shortcuts (act on the first post) ---------------------------
   document.addEventListener('keydown', (e) => {
     const t = e.target;
@@ -293,8 +308,63 @@
     }
   });
 
-  addCells(INITIAL);
-  virtualize();
+  // ?view=status (or any /status/ path): a post page. The URL moves to /x/<handle>/status/<id> like X, with the post
+  // first and replies below it.
+  const REPLIES = [
+    { name: 'Ivy Holt', handle: 'ivyholt', time: '1h', hue: 340, text: 'The meetings-about-design bar is painfully accurate ', emoji: true },
+    { name: 'Sam Patel', handle: 'sampatel', time: '1h', hue: 60, verified: true, text: 'We tracked the same thing. Ours was worse.' },
+    { name: 'Noor Aziz', handle: 'nooraziz', time: '45m', hue: 100, image: true, text: 'Here is ours from last quarter.' },
+    {
+      name: 'Leo Grant', handle: 'leogrant', time: '30m', hue: 250, showMore: true,
+      text: 'Can you share the template? We tried something similar last year and gave up after a month',
+      rest: ' because nobody agreed on what counted as design time. Curious how you defined it.',
+    },
+  ].map((p, i) => Object.assign({ id: String(1900000000000000000n + BigInt(i * 104729)) }, p));
+  // Further replies X loads only when you scroll near the end of the post page.
+  const LATER = [
+    { name: 'Mia Torres', handle: 'miatorres', time: '20m', hue: 20, text: 'Saving this for our retro.' },
+    { name: 'Ken Ito', handle: 'kenito', time: '10m', hue: 200, text: 'The chart says it all.' },
+  ].map((p, i) => Object.assign({ id: String(1950000000000000000n + BigInt(i * 7907)) }, p));
+  REPLIES.concat(LATER).forEach((r) => state.set(r.id, { liked: false, reposted: false, bookmarked: false, replies: [], quotes: [] }));
+
+  if (params.get('view') === 'status' || /\/status\//.test(location.pathname)) {
+    // The post in the URL, or ?post=<index>, or Marcus. On its own page a long post shows in full.
+    const all = POSTS.concat(REPLIES, LATER);
+    const pick =
+      all.find((x) => location.pathname.includes(x.id) || params.get('id') === x.id) ||
+      (params.has('post') && POSTS[Number(params.get('post'))]) ||
+      POSTS[1];
+    const focal = Object.assign({}, pick, { focal: true });
+    history.replaceState({}, '', '/x/' + focal.handle + '/status/' + focal.id);
+    postPage = true;
+    const addPost = (p) => {
+      const c = { post: p, el: h('div', { 'data-testid': 'cellInnerDiv' }), mounted: false };
+      cells.push(c);
+      if (discover) timeline.insertBefore(c.el, discover); // later replies load above the section
+      else timeline.append(c.el);
+      mount(c);
+    };
+    let discover = null;
+    [focal].concat(REPLIES).forEach(addPost);
+    // Below the replies X lists posts it recommends, under a heading. They are not replies.
+    discover = h('div', { 'data-testid': 'cellInnerDiv' }, h('div', { class: 'section' }, h('h2', { role: 'heading', 'aria-level': '2' }, h('span', null, 'Discover more'))));
+    timeline.append(discover);
+    [POSTS[9], POSTS[10]].forEach((p) => {
+      const c = { post: p, el: h('div', { 'data-testid': 'cellInnerDiv' }), mounted: false };
+      cells.push(c);
+      timeline.append(c.el);
+      mount(c);
+    });
+    let more = LATER.slice();
+    addEventListener('scroll', () => {
+      if (!more.length || scrollY + innerHeight < document.documentElement.scrollHeight - 200) return;
+      more.forEach(addPost);
+      more = [];
+    });
+  } else {
+    addCells(INITIAL);
+    virtualize();
+  }
 
   window.__mockFeed = {
     state: (id) => JSON.parse(JSON.stringify(state.get(id))),

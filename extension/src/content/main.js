@@ -112,6 +112,7 @@
     S.drafts.clear();
     S.lastAction = null;
     ui.close();
+    if (NS.shot) NS.shot.closePanel();
     S.mode = 'idle';
     updateLauncher();
   }
@@ -252,6 +253,12 @@
         return runAction('save');
       case 'openPost':
         return openPost();
+      case 'screenshot':
+        return openShot();
+      case 'closeShot':
+        return NS.shot && NS.shot.closePanel();
+      case 'shotKey':
+        return NS.shot && NS.shot.key(c);
       case 'undo':
         return undo();
       case 'exit':
@@ -332,6 +339,7 @@
       open: a.open,
       copyLink: a.open,
       viewProfile: a.profile,
+      screenshot: !!NS.shot,
     }[id];
   }
 
@@ -376,6 +384,8 @@
         return copyLink();
       case 'viewProfile':
         return openTab(rec.author.profileUrl, 'Profile opened in a background tab');
+      case 'screenshot':
+        return openShot();
       default:
         return runAction(a.id);
     }
@@ -395,6 +405,25 @@
   function openPost() {
     const rec = cur();
     if (rec) openTab(rec.url, 'Opened in a background tab');
+  }
+
+  // The screenshot panel (src/x/shot.js) opens over the card; closing it returns to this post.
+  async function openShot() {
+    const rec = cur();
+    if (!rec || !NS.shot || !['main', 'engage', 'grace'].includes(S.mode)) return;
+    clearGrace();
+    const token = S.token;
+    const el = await det.locate(rec);
+    if (!S.active || token !== S.token) return;
+    if (!el) return ui.showToast("Couldn't find this post on the page. Scroll a little and try again.");
+    setMode('shot');
+    const opened = NS.shot.openPanel(el, {
+      onClose: () => {
+        if (S.active && S.mode === 'shot') backTo('main');
+      },
+      onSaved: (text) => S.active && ui.showToast(text, { kind: 'success', durationMs: 2600 }),
+    });
+    if (!opened) backTo('main');
   }
 
   function copyLink() {
@@ -524,7 +553,10 @@
     return S.mode === 'loading' ? 'blocked' : S.mode;
   }
 
-  window.addEventListener(
+  // Through early-keys.js when loaded (it runs before the site's own listeners), else directly.
+  const onKey = (type, fn) => (NS.keys ? NS.keys.on(type, fn) : window.addEventListener(type, fn, true));
+
+  onKey(
     'keydown',
     (e) => {
       if (!S.active || !e.isTrusted) return;
@@ -538,17 +570,15 @@
       e.preventDefault();
       e.stopImmediatePropagation();
       dispatch(c);
-    },
-    true
+    }
   );
   if (site.isolateKeys) {
     for (const type of ['keypress', 'keyup']) {
-      window.addEventListener(
+      onKey(
         type,
         (e) => {
           if (S.active && S.mode !== 'native' && !e.ctrlKey && !e.metaKey && !e.altKey) e.stopImmediatePropagation();
-        },
-        true
+        }
       );
     }
   }
