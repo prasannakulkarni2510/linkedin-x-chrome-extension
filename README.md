@@ -13,7 +13,6 @@
   <img alt="Chrome extension, Manifest V3" src="https://img.shields.io/badge/Chrome-Manifest%20V3-0f766e?logo=googlechrome&logoColor=white">
   <img alt="Works on LinkedIn" src="https://img.shields.io/badge/works%20on-LinkedIn-0a66c2">
   <img alt="Works on X" src="https://img.shields.io/badge/works%20on-X-000000">
-  <img alt="91 unit and 61 end-to-end tests" src="https://img.shields.io/badge/tests-91%20unit%20%C2%B7%2061%20e2e-0f766e">
   <img alt="Version 0.3.0" src="https://img.shields.io/badge/version-0.3.0-f5b83d">
 </p>
 
@@ -38,7 +37,7 @@ you read it, decide, and move on.
 - **Honest results.** An action counts as done only when the site confirms it. If it doesn't,
   Swipe Mode says so and marks nothing.
 - **Human pace.** A pacing guard spaces out actions. Reading and skipping are never limited.
-- **Screenshot posts, meme style.** On X, `P` turns a post and the replies you pick into a square
+- **Screenshot posts with replies.** On X, `P` turns a post and the replies you pick into a square
   PNG on a white background, saved straight to a folder you choose once. No mouse needed.
 
 ## Install
@@ -93,7 +92,7 @@ window to stay and do a second action, for example react, then comment.
 ## Tweet screenshots
 
 Turn an X post and the replies you pick into a 1080×1080 PNG on a white background, drawn like an
-X screenshot, ready for Instagram or a meme page.
+X screenshot, ready to share on Instagram, LinkedIn or anywhere else.
 
 **Open it:** in Swipe Mode press `P` (or `9` in the engage menu). Outside Swipe Mode, every post
 on X has a camera button next to Bookmark. The panel docks on the right with a live preview; the
@@ -158,10 +157,9 @@ with LinkedIn or X.
 
 | | |
 | --- | --- |
-| ✅ Tested | 89 unit tests and 46 end-to-end tests that load the real extension in Chromium against local mock feeds for LinkedIn (`dev/mock-feed`) and X (`dev/mock-feed/x`). |
 | ✅ Real LinkedIn | Finding, reading and skipping posts (checked on 0.1.3). |
 | ✅ Real X | Tweet screenshots: replies with profile pictures and photos, the square image (checked on 0.3.0). |
-| ⚠️ Not yet checked live | LinkedIn reacting, commenting, saving and reposting on the 2026 layout; Swipe Mode's X actions; screenshot details added late in 0.3.0 (full text of cut-off replies, leaving out "Discover more", gold and grey badges). The mocks copy the sites' markup, so tests prove the code matches the mocks, not the live sites. |
+| ⚠️ Not yet checked live | LinkedIn reacting, commenting, saving and reposting on the 2026 layout; Swipe Mode's X actions; screenshot details added late in 0.3.0 (full text of cut-off replies, leaving out "Discover more", gold and grey badges). |
 
 If an action shows "Couldn't complete that" or "Couldn't confirm", nothing was claimed as done.
 Run **Options → Inspect page layout** on that tab and adjust `extension/src/linkedin/selectors.js`

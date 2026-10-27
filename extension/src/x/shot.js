@@ -1,5 +1,5 @@
 // Tweet screenshots: a camera button on every post opens a side panel where you pick replies and
-// save the post plus those replies as one 1:1 PNG (see shot-render.js), meme style, white
+// save the post plus those replies as one 1:1 PNG (see shot-render.js) on a white
 // background. Replies are read from the post's own page, so on the timeline the panel offers to
 // open it. Works on its own, with or without Swipe Mode running. Nothing is posted or clicked on X
 // except the post's own link when you ask to open it.
