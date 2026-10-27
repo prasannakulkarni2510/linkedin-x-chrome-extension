@@ -1,0 +1,130 @@
+{
+  "scale": 1.5,
+  "view": {
+    "width": 1440,
+    "height": 900
+  },
+  "recordings": {
+    "linkedin": {
+      "file": "assets/v3/linkedin.mp4",
+      "t0": 1793130804.660594,
+      "beats": [
+        "li-start",
+        "li-skip",
+        "li-act"
+      ]
+    },
+    "trust": {
+      "file": "assets/v3/trust.mp4",
+      "t0": 1793131764.581165,
+      "beats": [
+        "li-trust"
+      ]
+    },
+    "x": {
+      "file": "assets/v3/x.mp4",
+      "t0": 1793130856.610455,
+      "beats": [
+        "x"
+      ]
+    },
+    "shot": {
+      "file": "assets/v3/shot.mp4",
+      "t0": 1793130873.405587,
+      "beats": [
+        "shot"
+      ]
+    }
+  },
+  "beats": {
+    "li-start": 1793130805.029,
+    "li-skip": 1793130809.892,
+    "li-act": 1793130813.2,
+    "li-trust": 1793131769.791,
+    "x": 1793130856.996,
+    "shot": 1793130873.783
+  },
+  "keys": [
+    {
+      "beat": "li-start",
+      "key": "Alt+Shift+S",
+      "t": 1793130805.937
+    },
+    {
+      "beat": "li-start",
+      "key": "↓",
+      "t": 1793130807.917
+    },
+    {
+      "beat": "li-skip",
+      "key": "←",
+      "t": 1793130809.999
+    },
+    {
+      "beat": "li-skip",
+      "key": "U",
+      "t": 1793130811.155
+    },
+    {
+      "beat": "li-act",
+      "key": "→",
+      "t": 1793130813.303
+    },
+    {
+      "beat": "li-act",
+      "key": "R",
+      "t": 1793130816.842
+    },
+    {
+      "beat": "li-act",
+      "key": "2",
+      "t": 1793130817.457
+    },
+    {
+      "beat": "li-act",
+      "key": "S",
+      "t": 1793130818.363
+    },
+    {
+      "beat": "x",
+      "key": "Alt+Shift+S",
+      "t": 1793130857.103
+    },
+    {
+      "beat": "x",
+      "key": "R",
+      "t": 1793130858.864
+    },
+    {
+      "beat": "x",
+      "key": "S",
+      "t": 1793130859.787
+    },
+    {
+      "beat": "shot",
+      "key": "P",
+      "t": 1793130875.353
+    },
+    {
+      "beat": "shot",
+      "key": "1",
+      "t": 1793130879.252
+    },
+    {
+      "beat": "shot",
+      "key": "3",
+      "t": 1793130879.769
+    },
+    {
+      "beat": "shot",
+      "key": "R",
+      "t": 1793130880.592
+    },
+    {
+      "beat": "shot",
+      "key": "Enter",
+      "t": 1793130883.83
+    }
+  ],
+  "saved": "tweet-marcuswebb-1800000000000007919-2-replies.png"
+}

@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+  #root { position: absolute; inset: 0; overflow: hidden; background: #eef3f1; font-family: "Montserrat", sans-serif; color: #13201d; }
+  .dots { position: absolute; inset: -60px; background-image: radial-gradient(#0f766e 2.2px, transparent 2.4px); background-size: 44px 44px; opacity: 0.12; }
+  .glow { position: absolute; right: -380px; top: 40px; width: 1000px; height: 1000px; border-radius: 50%; background: radial-gradient(circle, rgba(15,118,110,0.26) 0%, rgba(15,118,110,0) 65%); }
+  .top { position: absolute; left: 64px; right: 64px; top: 34px; display: flex; justify-content: space-between; align-items: center; font: 700 24px "JetBrains Mono", monospace; letter-spacing: 0.1em; }
+  .top-left { display: flex; align-items: center; gap: 14px; color: #0f766e; }
+  .top-left svg, .addr svg { display: block; flex: none; }
+  .top-right { color: #4b5b57; }
+  .window { position: absolute; left: 64px; top: 96px; width: 1222px; height: 813px; border-radius: 22px; border: 3px solid #13201d; background: #ffffff; box-shadow: 0 12px 0 #13201d; overflow: hidden; }
+  .chrome { position: absolute; left: 0; right: 0; top: 0; height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 18px; background: #f6f9f8; border-bottom: 3px solid #13201d; }
+  .wdot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #13201d; flex: none; }
+  .addr { position: relative; margin-left: 18px; flex: 1; height: 30px; border-radius: 15px; background: #e4ecea; display: flex; align-items: center; gap: 10px; padding: 0 16px; font: 700 18px "JetBrains Mono", monospace; color: #4b5b57; white-space: nowrap; overflow: hidden; }
+  .screen { position: absolute; left: 0; top: 47px; width: 1216px; height: 760px; overflow: hidden; }
+  .screen img { position: absolute; left: 0; top: 0; width: 1216px; height: 760px; }
+  /* Recordings are scaled so their last 8 source pixels fall outside the window: that hides the
+     sync marker in the bottom-right corner. */
+  .screen video { position: absolute; left: 0; top: 0; width: 1223.65px; height: 764.78px; }
+  .panel { position: absolute; left: 1336px; top: 104px; width: 524px; height: 780px; }
+  .step { position: absolute; left: 0; top: 0; width: 524px; opacity: 0; }
+  .step-num { font-weight: 900; font-size: 132px; line-height: 0.9; letter-spacing: -0.05em; color: #0f766e; }
+  .step-of { font: 700 24px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.08em; margin-top: 12px; }
+  .step-title { font-weight: 900; font-size: 54px; letter-spacing: -0.035em; line-height: 1.04; margin-top: 22px; }
+  .step-keys { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 14px 12px; margin-top: 30px; }
+  .key-group { display: flex; align-items: center; gap: 8px; }
+  .cap-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .cap { display: inline-flex; align-items: center; justify-content: center; flex: none; min-width: 80px; height: 80px; padding: 0 16px; border-radius: 16px; background: #ffffff; border: 3px solid #13201d; box-shadow: 0 8px 0 #13201d; font: 700 36px "JetBrains Mono", monospace; color: #13201d; }
+  .cap-small { font-size: 26px; }
+  .cap-sub { font: 700 22px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.04em; }
+  .cap-join { font: 700 28px "JetBrains Mono", monospace; color: #4b5b57; }
+  .step-body { margin-top: 30px; font-size: 32px; line-height: 1.36; }
+  .chips { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 24px; }
+  .chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 999px; background: #0f766e; color: #ffffff; font-weight: 700; font-size: 26px; opacity: 0; }
+  .chip--warn { background: #13201d; }
+  .rail { position: absolute; left: 64px; right: 64px; top: 958px; display: flex; gap: 10px; }
+  .rail-seg { flex: 1; min-width: 0; }
+  .rail-track { height: 10px; border-radius: 5px; background: #cfdcd8; overflow: hidden; }
+  .rail-fill { width: 100%; height: 100%; background: #0f766e; transform-origin: 0 50%; }
+  .rail-label { margin-top: 14px; font: 700 20px "JetBrains Mono", monospace; letter-spacing: 0.06em; color: #4b5b57; text-align: center; white-space: nowrap; }
+  .ring { position: absolute; border: 5px solid #f5b83d; border-radius: 14px; box-shadow: 0 0 0 6px rgba(245,184,61,0.28); opacity: 0; }
+
+  .ins-head { font: 700 24px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.08em; }
+  .ins-title { font-weight: 900; font-size: 60px; letter-spacing: -0.035em; line-height: 1.04; margin-top: 18px; }
+  .ins-list { margin-top: 40px; display: flex; flex-direction: column; gap: 26px; }
+  .ins-row { display: flex; align-items: center; gap: 22px; font-size: 32px; font-weight: 700; }
+  .ins-dot { position: relative; width: 64px; height: 64px; flex: none; border-radius: 50%; border: 3px solid #13201d; background: #ffffff; display: grid; place-items: center; font: 700 28px "JetBrains Mono", monospace; }
+  .ins-check { position: absolute; inset: -3px; border-radius: 50%; background: #0f766e; color: #ffffff; display: grid; place-items: center; font-size: 34px; }
+  .ins-done { margin-top: 40px; display: inline-flex; padding: 12px 22px; border-radius: 999px; background: #0f766e; color: #ffffff; font-weight: 700; font-size: 26px; }
+      </style>
+      <div data-hf-id="hf-0deh" id="root" data-composition-id="v2-install" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-mo1h" id="v2-install-dots" class="dots"></div>
+        <div data-hf-id="hf-xjw8" id="v2-install-glow" class="glow" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-2rlz" id="v2-install-top" class="top"><div data-hf-id="hf-86hm" class="top-left">SWIPE MODE · INSTALL</div><div data-hf-id="hf-3xmg" class="top-right">LIVE CAPTURES · GITHUB AND CHROME</div></div>
+        <div data-hf-id="hf-hp61" id="v2-install-window" class="window">
+          <div data-hf-id="hf-6ex2" class="chrome"><div data-hf-id="hf-eib4" class="wdot"></div><div data-hf-id="hf-q1hk" class="wdot"></div><div data-hf-id="hf-oukh" class="wdot"></div>
+            <div data-hf-id="hf-z723" id="v2-install-addr" class="addr"><span data-hf-id="hf-l85t" id="v2-install-addr-text">github.com/prasannakulkarni2510/linkedin-x-chrome-extension</span><span data-hf-id="hf-47kw" id="v2-install-addr-2" style="position:absolute;left:16px">chrome://extensions</span></div>
+          </div>
+          <div data-hf-id="hf-cdmk" class="screen">
+            <img data-hf-id="hf-37e7" id="v2-install-s1" src="assets/v2/github-repo.png" alt="" />
+            <img data-hf-id="hf-yov7" id="v2-install-s2" src="assets/v2/github-code.png" alt="" />
+            <img data-hf-id="hf-p6se" id="v2-install-s3" src="assets/v2/ext-off.png" alt="" />
+            <img data-hf-id="hf-xszj" id="v2-install-s4" src="assets/v2/ext-on.png" alt="" />
+            <div data-hf-id="hf-vwqm" id="v2-install-ring-zip" class="ring" style="left:520.6px;top:513.95px;width:361px;height:28.5px"></div>
+            <div data-hf-id="hf-e7zz" id="v2-install-ring-dev" class="ring" style="left:1065.9px;top:11.4px;width:148.2px;height:32.3px"></div>
+            <div data-hf-id="hf-nuta" id="v2-install-ring-load" class="ring" style="left:17.1px;top:58.9px;width:129.2px;height:41.8px"></div>
+            <div data-hf-id="hf-srwt" id="v2-install-ring-card" class="ring" style="left:321.1px;top:187.15px;width:391.4px;height:209px"></div>
+          </div>
+        </div>
+        <div data-hf-id="hf-oh6z" id="v2-install-panel" class="panel">
+          <div data-hf-id="hf-rb3r" id="v2-install-head" class="ins-head">FROM GITHUB · NO STORE NEEDED</div>
+          <div data-hf-id="hf-f3z9" id="v2-install-title" class="ins-title">Install in four steps</div>
+          <div data-hf-id="hf-asw9" class="ins-list"><div data-hf-id="hf-qehb" id="v2-install-row-0" class="ins-row"><div data-hf-id="hf-sm0h" class="ins-dot">1<div data-hf-id="hf-l7jo" id="v2-install-check-0" class="ins-check">✓</div></div><div data-hf-id="hf-r6xj">Download the ZIP from GitHub</div></div><div data-hf-id="hf-mgda" id="v2-install-row-1" class="ins-row"><div data-hf-id="hf-tsxk" class="ins-dot">2<div data-hf-id="hf-u05z" id="v2-install-check-1" class="ins-check">✓</div></div><div data-hf-id="hf-1291">Turn on Developer mode</div></div><div data-hf-id="hf-ii99" id="v2-install-row-2" class="ins-row"><div data-hf-id="hf-temj" class="ins-dot">3<div data-hf-id="hf-l8fu" id="v2-install-check-2" class="ins-check">✓</div></div><div data-hf-id="hf-t22j">Click Load unpacked</div></div><div data-hf-id="hf-fizo" id="v2-install-row-3" class="ins-row"><div data-hf-id="hf-rf3e" class="ins-dot">4<div data-hf-id="hf-6zn9" id="v2-install-check-3" class="ins-check">✓</div></div><div data-hf-id="hf-cfm9">Pick the extension folder</div></div></div>
+          <div data-hf-id="hf-7z83" id="v2-install-done" class="ins-done">✓ Swipe Mode 0.2.0 loaded</div>
+        </div>
+        <div data-hf-id="hf-ot25" id="v2-install-rail" class="rail"><div data-hf-id="hf-dcr0" class="rail-seg"><div data-hf-id="hf-gst6" class="rail-track"><div data-hf-id="hf-f0cr" id="v2-install-fill-0" class="rail-fill"></div></div><div data-hf-id="hf-zie1" id="v2-install-label-0" class="rail-label">START</div></div><div data-hf-id="hf-16n8" class="rail-seg"><div data-hf-id="hf-ku0u" class="rail-track"><div data-hf-id="hf-b28q" id="v2-install-fill-1" class="rail-fill"></div></div><div data-hf-id="hf-itde" id="v2-install-label-1" class="rail-label">READ</div></div><div data-hf-id="hf-zzq5" class="rail-seg"><div data-hf-id="hf-l8bv" class="rail-track"><div data-hf-id="hf-744p" id="v2-install-fill-2" class="rail-fill"></div></div><div data-hf-id="hf-4l22" id="v2-install-label-2" class="rail-label">ENGAGE</div></div><div data-hf-id="hf-0e16" class="rail-seg"><div data-hf-id="hf-lmmw" class="rail-track"><div data-hf-id="hf-6cgw" id="v2-install-fill-3" class="rail-fill"></div></div><div data-hf-id="hf-v36n" id="v2-install-label-3" class="rail-label">REACT</div></div><div data-hf-id="hf-2dkb" class="rail-seg"><div data-hf-id="hf-iuhp" class="rail-track"><div data-hf-id="hf-2ecv" id="v2-install-fill-4" class="rail-fill"></div></div><div data-hf-id="hf-f2dk" id="v2-install-label-4" class="rail-label">COMMENT</div></div><div data-hf-id="hf-2rvc" class="rail-seg"><div data-hf-id="hf-j8sq" class="rail-track"><div data-hf-id="hf-w8n2" id="v2-install-fill-5" class="rail-fill"></div></div><div data-hf-id="hf-3xcb" id="v2-install-label-5" class="rail-label">SAVE</div></div><div data-hf-id="hf-1ky9" class="rail-seg"><div data-hf-id="hf-jn3r" class="rail-track"><div data-hf-id="hf-saj1" id="v2-install-fill-6" class="rail-fill"></div></div><div data-hf-id="hf-0yzh" id="v2-install-label-6" class="rail-label">TRUST</div></div><div data-hf-id="hf-1z9a" class="rail-seg"><div data-hf-id="hf-k1es" class="rail-track"><div data-hf-id="hf-riv8" id="v2-install-fill-7" class="rail-fill"></div></div><div data-hf-id="hf-tkg4" id="v2-install-label-7" class="rail-label">X</div></div><div data-hf-id="hf-3ysf" class="rail-seg"><div data-hf-id="hf-nm61" class="rail-track"><div data-hf-id="hf-6fyb" id="v2-install-fill-8" class="rail-fill"></div></div><div data-hf-id="hf-l9kb" id="v2-install-label-8" class="rail-label">SWIPE</div></div><div data-hf-id="hf-4d3g" class="rail-seg"><div data-hf-id="hf-o0h2" class="rail-track"><div data-hf-id="hf-2hua" id="v2-install-fill-9" class="rail-fill"></div></div><div data-hf-id="hf-aqje" id="v2-install-label-9" class="rail-label">EXIT</div></div></div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+
+        tl.fromTo("#v2-install-dots", { x: 0, y: 0 }, { x: -44, y: -22, duration: 9.8, ease: "none" }, 0);
+        tl.fromTo("#v2-install-glow", { scale: 0.92 }, { scale: 1.06, duration: 4, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+        for (let i = 0; i < 10; i++) tl.set("#v2-install-fill-" + i, { scaleX: 0 }, 0);
+        tl.fromTo("#v2-install-window", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 0);
+        tl.fromTo("#v2-install-top", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.1);
+        tl.fromTo("#v2-install-rail", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.3);
+        tl.fromTo("#v2-install-head", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 0.25);
+        tl.fromTo("#v2-install-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 0.35);
+        tl.fromTo("#v2-install-row-0", { opacity: 0, x: 30 }, { opacity: 0.45, x: 0, duration: 0.4, ease: "power2.out" }, 0.6);
+        tl.fromTo("#v2-install-row-1", { opacity: 0, x: 30 }, { opacity: 0.45, x: 0, duration: 0.4, ease: "power2.out" }, 0.72);
+        tl.fromTo("#v2-install-row-2", { opacity: 0, x: 30 }, { opacity: 0.45, x: 0, duration: 0.4, ease: "power2.out" }, 0.84);
+        tl.fromTo("#v2-install-row-3", { opacity: 0, x: 30 }, { opacity: 0.45, x: 0, duration: 0.4, ease: "power2.out" }, 0.96);
+        tl.set("#v2-install-check-0", { scale: 0, opacity: 0 }, 0);
+        tl.set("#v2-install-check-1", { scale: 0, opacity: 0 }, 0);
+        tl.set("#v2-install-check-2", { scale: 0, opacity: 0 }, 0);
+        tl.set("#v2-install-check-3", { scale: 0, opacity: 0 }, 0);
+        // Screens follow the voice: repo, Code menu, extensions page, developer mode on.
+        tl.set("#v2-install-s2", { opacity: 0 }, 0).set("#v2-install-s3", { opacity: 0 }, 0).set("#v2-install-s4", { opacity: 0 }, 0);
+        tl.to("#v2-install-s2", { opacity: 1, duration: 0.25, ease: "none" }, 1.8);
+        tl.to("#v2-install-s3", { opacity: 1, duration: 0.25, ease: "none" }, 3.3);
+        tl.to("#v2-install-s4", { opacity: 1, duration: 0.25, ease: "none" }, 4.6);
+        tl.set("#v2-install-addr-2", { opacity: 0 }, 0);
+        tl.to("#v2-install-addr-text", { opacity: 0, duration: 0.15, ease: "none" }, 3.3);
+        tl.to("#v2-install-addr-2", { opacity: 1, duration: 0.15, ease: "none" }, 3.35);
+        tl.fromTo("#v2-install-ring-zip", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 2.1);
+        tl.to("#v2-install-ring-zip", { opacity: 0, duration: 0.2, ease: "power1.in" }, 3.45);
+        tl.fromTo("#v2-install-ring-dev", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 3.6);
+        tl.to("#v2-install-ring-dev", { opacity: 0, duration: 0.2, ease: "power1.in" }, 5.15);
+        tl.fromTo("#v2-install-ring-load", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 5.3);
+        tl.to("#v2-install-ring-load", { opacity: 0, duration: 0.2, ease: "power1.in" }, 6.55);
+        tl.fromTo("#v2-install-ring-card", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 6.7);
+        
+        tl.to("#v2-install-row-0", { opacity: 1, duration: 0.2, ease: "none" }, 2.1);
+        tl.to("#v2-install-check-0", { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.4)" }, 2.35);
+        tl.to("#v2-install-row-1", { opacity: 1, duration: 0.2, ease: "none" }, 3.6);
+        tl.to("#v2-install-check-1", { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.4)" }, 3.85);
+        tl.to("#v2-install-row-2", { opacity: 1, duration: 0.2, ease: "none" }, 5.3);
+        tl.to("#v2-install-check-2", { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.4)" }, 5.55);
+        tl.to("#v2-install-row-3", { opacity: 1, duration: 0.2, ease: "none" }, 6.7);
+        tl.to("#v2-install-check-3", { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.4)" }, 6.95);
+        tl.fromTo("#v2-install-done", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, 7.6);
+        window.__timelines["v2-install"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

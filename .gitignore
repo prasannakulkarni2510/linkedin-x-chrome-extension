@@ -6,10 +6,18 @@ videos/**/.thumbnails/
 videos/**/.waveform-cache/
 *.log
 .DS_Store
-# Kept local, not published: the video's HyperFrames project and its footage tooling,
-# one-off console snippets, and personal drafts. The finished video lives in docs/media/.
-videos/
-dev/record-demo*.js
-dev/prep-v2-footage.js
+# The video's HyperFrames project is published (videos/swipe-mode-tutorial), minus what is rebuilt or
+# cached: renders (the finished video lives in docs/media/), preview caches, derived audio and
+# duplicate takes, and status files that record machine paths.
+videos/**/.hyperframes/
+videos/**/.media/
+videos/**/bgm_status.json
+videos/**/audio_meta.json
+videos/**/assets/bgm-v2/bed.wav
+videos/**/assets/v2/*.webm
+videos/**/assets/v3/bed.wav
+videos/**/assets/v3/voice/concat.txt
+videos/**/assets/v3/voice/silence-*.wav
+# Kept local, not published: one-off console snippets and personal drafts.
 dev/linkedin-probe.js
 docs/linkedin-post.md

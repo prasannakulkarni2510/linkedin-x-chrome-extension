@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+  #root { position: absolute; inset: 0; overflow: hidden; background: #eef3f1; font-family: "Montserrat", sans-serif; color: #13201d; }
+  .dots { position: absolute; inset: -60px; background-image: radial-gradient(#0f766e 2.2px, transparent 2.4px); background-size: 44px 44px; opacity: 0.12; }
+  .glow { position: absolute; right: -380px; top: 40px; width: 1000px; height: 1000px; border-radius: 50%; background: radial-gradient(circle, rgba(15,118,110,0.26) 0%, rgba(15,118,110,0) 65%); }
+  .top { position: absolute; left: 64px; right: 64px; top: 34px; display: flex; justify-content: space-between; align-items: center; font: 700 24px "JetBrains Mono", monospace; letter-spacing: 0.1em; }
+  .top-left { display: flex; align-items: center; gap: 14px; color: #0f766e; }
+  .top-left svg, .addr svg { display: block; flex: none; }
+  .top-right { color: #4b5b57; }
+  .window { position: absolute; left: 64px; top: 96px; width: 1222px; height: 813px; border-radius: 22px; border: 3px solid #13201d; background: #ffffff; box-shadow: 0 12px 0 #13201d; overflow: hidden; }
+  .chrome { position: absolute; left: 0; right: 0; top: 0; height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 18px; background: #f6f9f8; border-bottom: 3px solid #13201d; }
+  .wdot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #13201d; flex: none; }
+  .addr { position: relative; margin-left: 18px; flex: 1; height: 30px; border-radius: 15px; background: #e4ecea; display: flex; align-items: center; gap: 10px; padding: 0 16px; font: 700 18px "JetBrains Mono", monospace; color: #4b5b57; white-space: nowrap; overflow: hidden; }
+  .screen { position: absolute; left: 0; top: 47px; width: 1216px; height: 760px; overflow: hidden; }
+  .screen img { position: absolute; left: 0; top: 0; width: 1216px; height: 760px; }
+  /* Recordings are scaled so their last 8 source pixels fall outside the window: that hides the
+     sync marker in the bottom-right corner. */
+  .screen video { position: absolute; left: 0; top: 0; width: 1223.65px; height: 764.78px; }
+  .panel { position: absolute; left: 1336px; top: 104px; width: 524px; height: 780px; }
+  .step { position: absolute; left: 0; top: 0; width: 524px; opacity: 0; }
+  .step-num { font-weight: 900; font-size: 132px; line-height: 0.9; letter-spacing: -0.05em; color: #0f766e; }
+  .step-of { font: 700 24px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.08em; margin-top: 12px; }
+  .step-title { font-weight: 900; font-size: 54px; letter-spacing: -0.035em; line-height: 1.04; margin-top: 22px; }
+  .step-keys { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 14px 12px; margin-top: 30px; }
+  .key-group { display: flex; align-items: center; gap: 8px; }
+  .cap-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .cap { display: inline-flex; align-items: center; justify-content: center; flex: none; min-width: 80px; height: 80px; padding: 0 16px; border-radius: 16px; background: #ffffff; border: 3px solid #13201d; box-shadow: 0 8px 0 #13201d; font: 700 36px "JetBrains Mono", monospace; color: #13201d; }
+  .cap-small { font-size: 26px; }
+  .cap-sub { font: 700 22px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.04em; }
+  .cap-join { font: 700 28px "JetBrains Mono", monospace; color: #4b5b57; }
+  .step-body { margin-top: 30px; font-size: 32px; line-height: 1.36; }
+  .chips { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 24px; }
+  .chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 999px; background: #0f766e; color: #ffffff; font-weight: 700; font-size: 26px; opacity: 0; }
+  .chip--warn { background: #13201d; }
+  .rail { position: absolute; left: 64px; right: 64px; top: 958px; display: flex; gap: 10px; }
+  .rail-seg { flex: 1; min-width: 0; }
+  .rail-track { height: 10px; border-radius: 5px; background: #cfdcd8; overflow: hidden; }
+  .rail-fill { width: 100%; height: 100%; background: #0f766e; transform-origin: 0 50%; }
+  .rail-label { margin-top: 14px; font: 700 20px "JetBrains Mono", monospace; letter-spacing: 0.06em; color: #4b5b57; text-align: center; white-space: nowrap; }
+  .ring { position: absolute; border: 5px solid #f5b83d; border-radius: 14px; box-shadow: 0 0 0 6px rgba(245,184,61,0.28); opacity: 0; }
+
+  .ghost { position: absolute; left: -40px; bottom: -70px; font-weight: 900; font-size: 300px; letter-spacing: -0.04em; color: #0f766e; opacity: 0.12; white-space: nowrap; }
+  .cl { position: absolute; left: 140px; top: 170px; width: 1100px; }
+  .cl-icon { width: 150px; height: 150px; }
+  .cl-icon svg { width: 100%; height: 100%; display: block; }
+  .cl h1 { margin: 30px 0 0; font-weight: 900; font-size: 140px; line-height: 0.92; letter-spacing: -0.05em; }
+  .cl p { margin: 22px 0 0; font-size: 58px; font-weight: 700; color: #0f766e; letter-spacing: -0.02em; }
+  .cl-sites { display: flex; align-items: center; gap: 20px; margin-top: 46px; font-size: 34px; font-weight: 700; color: #4b5b57; }
+  .cl-sites i { width: 64px; height: 64px; display: block; }
+  .cl-sites svg { width: 100%; height: 100%; display: block; }
+  .addr-pill { display: inline-flex; align-items: center; gap: 16px; margin-top: 40px; padding: 18px 28px; border-radius: 18px; background: #13201d; color: #ffffff; font: 700 30px "JetBrains Mono", monospace; }
+  .fine { position: absolute; left: 140px; bottom: 60px; font-size: 24px; color: #4b5b57; }
+  .stack { position: absolute; left: 1290px; top: 230px; width: 520px; height: 460px; }
+  .card { position: absolute; left: 0; top: 0; width: 520px; height: 455px; border-radius: 18px; overflow: hidden; border: 3px solid #13201d; box-shadow: 0 12px 0 #13201d; background: #ffffff; }
+  .card img { display: block; width: 100%; height: 100%; }
+      </style>
+      <div data-hf-id="hf-97ua" id="root" data-composition-id="v2-close" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-cjgm" id="v2-close-dots" class="dots"></div>
+        <div data-hf-id="hf-rj77" id="v2-close-glow" class="glow" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-1rnf" id="v2-close-ghost" class="ghost" data-layout-allow-overflow="">YOUR CHOICE</div>
+        <div data-hf-id="hf-d1zs" class="stack">
+          <div data-hf-id="hf-viub" id="v2-close-c2" class="card"><img data-hf-id="hf-ybm5" src="assets/v2/stills/card-linkedin.png" alt="" /></div>
+          <div data-hf-id="hf-muyg" id="v2-close-c1" class="card"><img data-hf-id="hf-xtgz" src="assets/v2/stills/card-x.png" alt="" /></div>
+        </div>
+        <div data-hf-id="hf-z3cd" class="cl">
+          <div data-hf-id="hf-ewtq" id="v2-close-icon" class="cl-icon"><svg data-hf-id="hf-yagd" viewBox="0 0 128 128"><rect data-hf-id="hf-x6hi" x="4" y="4" width="120" height="120" rx="28" fill="#0f766e"/><rect data-hf-id="hf-ibcu" x="34" y="22" width="60" height="84" rx="12" fill="#ffffff" transform="rotate(-8 64 64)" opacity="0.35"/><rect data-hf-id="hf-leeg" x="34" y="22" width="60" height="84" rx="12" fill="#ffffff"/><rect data-hf-id="hf-lpg0" x="44" y="36" width="40" height="6" rx="3" fill="#0f766e" opacity="0.55"/><rect data-hf-id="hf-ik7g" x="44" y="48" width="30" height="6" rx="3" fill="#0f766e" opacity="0.35"/><path data-hf-id="hf-osqs" d="M30 92 16 78l14-14M98 64l14 14-14 14" fill="none" stroke="#fbbf24" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h1 data-hf-id="hf-1c8g" id="v2-close-title">Swipe Mode</h1>
+          <p data-hf-id="hf-41nf" id="v2-close-tag">Every action stays your choice.</p>
+          <div data-hf-id="hf-3za4" id="v2-close-sites" class="cl-sites">Works on <i data-hf-id="hf-wt6k"><svg data-hf-id="hf-tk7g" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 256"><path data-hf-id="hf-z5ur" d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453" fill="#0A66C2" /></svg></i> LinkedIn and <i data-hf-id="hf-zeb8"><svg data-hf-id="hf-ait2" fill="#000000" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-5mpm" d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z" /></svg></i> X</div>
+          <div data-hf-id="hf-p7vf" id="v2-close-addr" class="addr-pill">github.com/prasannakulkarni2510/linkedin-x-chrome-extension</div>
+        </div>
+        <div data-hf-id="hf-3w2f" id="v2-close-fine" class="fine">Not affiliated with LinkedIn or X. Demo feeds with fictional people.</div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+
+        tl.fromTo("#v2-close-dots", { x: 0, y: 0 }, { x: -44, y: -22, duration: 7.4, ease: "none" }, 0);
+        tl.fromTo("#v2-close-glow", { scale: 0.92 }, { scale: 1.06, duration: 4, ease: "sine.inOut", yoyo: true, repeat: 0 }, 0);
+        tl.fromTo("#v2-close-ghost", { x: 0 }, { x: -200, duration: 7.4, ease: "none" }, 0);
+        tl.fromTo("#v2-close-c2", { opacity: 0, x: 80, rotation: 0 }, { opacity: 1, x: 30, rotation: 6, duration: 0.7, ease: "power3.out" }, 0.1);
+        tl.fromTo("#v2-close-c1", { opacity: 0, x: 80, rotation: 0 }, { opacity: 1, x: 0, rotation: -3, duration: 0.7, ease: "power3.out" }, 0.25);
+        tl.to("#v2-close-c1", { rotation: 1, duration: 5, ease: "sine.inOut" }, 1.0);
+        tl.fromTo("#v2-close-icon", { opacity: 0, scale: 0.3, rotation: -25 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.7, ease: "back.out(2.4)" }, 0.2);
+        tl.fromTo("#v2-close-title", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "expo.out" }, 0.45);
+        tl.fromTo("#v2-close-tag", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 1.4);
+        tl.fromTo("#v2-close-sites", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 2.3);
+        tl.fromTo("#v2-close-addr", { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 2.9);
+        tl.fromTo("#v2-close-fine", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power1.out" }, 3.4);
+        window.__timelines["v2-close"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

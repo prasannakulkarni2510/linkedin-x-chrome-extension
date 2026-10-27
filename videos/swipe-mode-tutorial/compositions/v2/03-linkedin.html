@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+  #root { position: absolute; inset: 0; overflow: hidden; background: #eef3f1; font-family: "Montserrat", sans-serif; color: #13201d; }
+  .dots { position: absolute; inset: -60px; background-image: radial-gradient(#0f766e 2.2px, transparent 2.4px); background-size: 44px 44px; opacity: 0.12; }
+  .glow { position: absolute; right: -380px; top: 40px; width: 1000px; height: 1000px; border-radius: 50%; background: radial-gradient(circle, rgba(15,118,110,0.26) 0%, rgba(15,118,110,0) 65%); }
+  .top { position: absolute; left: 64px; right: 64px; top: 34px; display: flex; justify-content: space-between; align-items: center; font: 700 24px "JetBrains Mono", monospace; letter-spacing: 0.1em; }
+  .top-left { display: flex; align-items: center; gap: 14px; color: #0f766e; }
+  .top-left svg, .addr svg { display: block; flex: none; }
+  .top-right { color: #4b5b57; }
+  .window { position: absolute; left: 64px; top: 96px; width: 1222px; height: 813px; border-radius: 22px; border: 3px solid #13201d; background: #ffffff; box-shadow: 0 12px 0 #13201d; overflow: hidden; }
+  .chrome { position: absolute; left: 0; right: 0; top: 0; height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 18px; background: #f6f9f8; border-bottom: 3px solid #13201d; }
+  .wdot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #13201d; flex: none; }
+  .addr { position: relative; margin-left: 18px; flex: 1; height: 30px; border-radius: 15px; background: #e4ecea; display: flex; align-items: center; gap: 10px; padding: 0 16px; font: 700 18px "JetBrains Mono", monospace; color: #4b5b57; white-space: nowrap; overflow: hidden; }
+  .screen { position: absolute; left: 0; top: 47px; width: 1216px; height: 760px; overflow: hidden; }
+  .screen img { position: absolute; left: 0; top: 0; width: 1216px; height: 760px; }
+  /* Recordings are scaled so their last 8 source pixels fall outside the window: that hides the
+     sync marker in the bottom-right corner. */
+  .screen video { position: absolute; left: 0; top: 0; width: 1223.65px; height: 764.78px; }
+  .panel { position: absolute; left: 1336px; top: 104px; width: 524px; height: 780px; }
+  .step { position: absolute; left: 0; top: 0; width: 524px; opacity: 0; }
+  .step-num { font-weight: 900; font-size: 132px; line-height: 0.9; letter-spacing: -0.05em; color: #0f766e; }
+  .step-of { font: 700 24px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.08em; margin-top: 12px; }
+  .step-title { font-weight: 900; font-size: 54px; letter-spacing: -0.035em; line-height: 1.04; margin-top: 22px; }
+  .step-keys { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 14px 12px; margin-top: 30px; }
+  .key-group { display: flex; align-items: center; gap: 8px; }
+  .cap-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .cap { display: inline-flex; align-items: center; justify-content: center; flex: none; min-width: 80px; height: 80px; padding: 0 16px; border-radius: 16px; background: #ffffff; border: 3px solid #13201d; box-shadow: 0 8px 0 #13201d; font: 700 36px "JetBrains Mono", monospace; color: #13201d; }
+  .cap-small { font-size: 26px; }
+  .cap-sub { font: 700 22px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.04em; }
+  .cap-join { font: 700 28px "JetBrains Mono", monospace; color: #4b5b57; }
+  .step-body { margin-top: 30px; font-size: 32px; line-height: 1.36; }
+  .chips { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 24px; }
+  .chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 999px; background: #0f766e; color: #ffffff; font-weight: 700; font-size: 26px; opacity: 0; }
+  .chip--warn { background: #13201d; }
+  .rail { position: absolute; left: 64px; right: 64px; top: 958px; display: flex; gap: 10px; }
+  .rail-seg { flex: 1; min-width: 0; }
+  .rail-track { height: 10px; border-radius: 5px; background: #cfdcd8; overflow: hidden; }
+  .rail-fill { width: 100%; height: 100%; background: #0f766e; transform-origin: 0 50%; }
+  .rail-label { margin-top: 14px; font: 700 20px "JetBrains Mono", monospace; letter-spacing: 0.06em; color: #4b5b57; text-align: center; white-space: nowrap; }
+  .ring { position: absolute; border: 5px solid #f5b83d; border-radius: 14px; box-shadow: 0 0 0 6px rgba(245,184,61,0.28); opacity: 0; }
+
+      </style>
+      <div data-hf-id="hf-4kn4" id="root" data-composition-id="v2-linkedin" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-kf62" id="v2-linkedin-dots" class="dots"></div>
+        <div data-hf-id="hf-beir" id="v2-linkedin-glow" class="glow" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-z30s" id="v2-linkedin-top" class="top"><div data-hf-id="hf-n5j3" class="top-left">SWIPE MODE ON <span data-hf-id="hf-dv32" style="width:30px;height:30px"><svg data-hf-id="hf-tk7g" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 256"><path data-hf-id="hf-z5ur" d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453" fill="#0A66C2" /></svg></span> LINKEDIN</div><div data-hf-id="hf-i080" class="top-right">REAL RECORDING · MOCK FEED, FICTIONAL PEOPLE</div></div>
+        <div data-hf-id="hf-v0ka" id="v2-linkedin-window" class="window">
+          <div data-hf-id="hf-6ex2" class="chrome"><div data-hf-id="hf-eib4" class="wdot"></div><div data-hf-id="hf-q1hk" class="wdot"></div><div data-hf-id="hf-oukh" class="wdot"></div>
+            <div data-hf-id="hf-65b2" id="v2-linkedin-addr" class="addr"><span data-hf-id="hf-zp62" style="width:22px;height:22px"><svg data-hf-id="hf-75b8" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 256"><path data-hf-id="hf-rcrn" d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453" fill="#0A66C2" /></svg></span><span data-hf-id="hf-p9fh" id="v2-linkedin-addr-text">linkedin.com/feed · demo feed</span></div>
+          </div>
+          <div data-hf-id="hf-cdmk" class="screen">
+            <video data-hf-id="hf-3dsx" id="v2-linkedin-video" class="clip" data-layout-allow-overflow="" src="assets/v2/linkedin.mp4" muted playsinline data-start="0" data-duration="44.4" data-media-start="2.33" data-track-index="0"></video>
+          </div>
+        </div>
+        <div data-hf-id="hf-stqi" id="v2-linkedin-panel" class="panel"></div>
+        <div data-hf-id="hf-1wfy" id="v2-linkedin-rail" class="rail"><div data-hf-id="hf-dcr0" class="rail-seg"><div data-hf-id="hf-gst6" class="rail-track"><div data-hf-id="hf-fqoc" id="v2-linkedin-fill-0" class="rail-fill"></div></div><div data-hf-id="hf-fb0g" id="v2-linkedin-label-0" class="rail-label">START</div></div><div data-hf-id="hf-16n8" class="rail-seg"><div data-hf-id="hf-ku0u" class="rail-track"><div data-hf-id="hf-ipxx" id="v2-linkedin-fill-1" class="rail-fill"></div></div><div data-hf-id="hf-cslx" id="v2-linkedin-label-1" class="rail-label">READ</div></div><div data-hf-id="hf-zzq5" class="rail-seg"><div data-hf-id="hf-l8bv" class="rail-track"><div data-hf-id="hf-mo1y" id="v2-linkedin-fill-2" class="rail-fill"></div></div><div data-hf-id="hf-6vc9" id="v2-linkedin-label-2" class="rail-label">ENGAGE</div></div><div data-hf-id="hf-0e16" class="rail-seg"><div data-hf-id="hf-lmmw" class="rail-track"><div data-hf-id="hf-qm5z" id="v2-linkedin-fill-3" class="rail-fill"></div></div><div data-hf-id="hf-q4cq" id="v2-linkedin-label-3" class="rail-label">REACT</div></div><div data-hf-id="hf-2dkb" class="rail-seg"><div data-hf-id="hf-iuhp" class="rail-track"><div data-hf-id="hf-uka0" id="v2-linkedin-fill-4" class="rail-fill"></div></div><div data-hf-id="hf-3a4d" id="v2-linkedin-label-4" class="rail-label">COMMENT</div></div><div data-hf-id="hf-2rvc" class="rail-seg"><div data-hf-id="hf-j8sq" class="rail-track"><div data-hf-id="hf-vbxt" id="v2-linkedin-fill-5" class="rail-fill"></div></div><div data-hf-id="hf-olic" id="v2-linkedin-label-5" class="rail-label">SAVE</div></div><div data-hf-id="hf-1ky9" class="rail-seg"><div data-hf-id="hf-jn3r" class="rail-track"><div data-hf-id="hf-za1u" id="v2-linkedin-fill-6" class="rail-fill"></div></div><div data-hf-id="hf-sb80" id="v2-linkedin-label-6" class="rail-label">TRUST</div></div><div data-hf-id="hf-1z9a" class="rail-seg"><div data-hf-id="hf-k1es" class="rail-track"><div data-hf-id="hf-385v" id="v2-linkedin-fill-7" class="rail-fill"></div></div><div data-hf-id="hf-63zl" id="v2-linkedin-label-7" class="rail-label">X</div></div><div data-hf-id="hf-3ysf" class="rail-seg"><div data-hf-id="hf-nm61" class="rail-track"><div data-hf-id="hf-ob2s" id="v2-linkedin-fill-8" class="rail-fill"></div></div><div data-hf-id="hf-psrq" id="v2-linkedin-label-8" class="rail-label">SWIPE</div></div><div data-hf-id="hf-4d3g" class="rail-seg"><div data-hf-id="hf-o0h2" class="rail-track"><div data-hf-id="hf-p2ql" id="v2-linkedin-fill-9" class="rail-fill"></div></div><div data-hf-id="hf-890d" id="v2-linkedin-label-9" class="rail-label">EXIT</div></div></div>
+      </div>
+      <script>
+        const STEPS = [{"n":1,"title":"Start","keys":[{"caps":["Alt","Shift","S"]}],"body":"Click the Swipe Mode button, or press Alt+Shift+S.","at":0.6,"press":[[0,3.47]],"chips":[["✓ One post, the whole card",3.5700000000000003,false]]},{"n":2,"title":"Read · skip · undo","keys":[{"caps":["↓|read"]},{"caps":["←|skip"]},{"caps":["U|undo"]}],"body":"Arrows scroll the card. Left skips, U brings it back.","at":5.33,"press":[[0,5.8],[0,6.47],[0,7.13],[1,9],[2,10.13],[1,11.3],[1,12.33]],"chips":[["✓ Promoted post left out",12.57,false]]},{"n":3,"title":"Engage menu","keys":[{"caps":["→"]}],"body":"Your options, numbered 1 to 8. Nothing happens until you pick.","at":12.5,"press":[[0,12.9]],"chips":[]},{"n":4,"title":"React","keys":[{"caps":["R"]},{"caps":["1–6"],"join":"then"},{"caps":["Esc|stay"],"join":"or"}],"body":"React by number. It moves on only after LinkedIn confirms.","at":19.6,"press":[[0,20.13],[1,20.93],[0,24.27],[1,24.8],[2,26.35]],"chips":[["✓ Reacted · Celebrate",22.1,false],["✓ Stayed for one more action",26.520000000000003,false]]},{"n":5,"title":"Comment","keys":[{"caps":["C"]},{"caps":["Ctrl","Enter"],"join":"then"}],"body":"Write it in the card. Ctrl+Enter posts it through LinkedIn's comment box.","at":28.8,"press":[[0,29.11],[1,31]],"chips":[["✓ Comment posted",34,false]]},{"n":6,"title":"Save · repost","keys":[{"caps":["S|save"]},{"caps":["3|repost"]},{"caps":["4|thoughts"]}],"body":"4 opens LinkedIn's own composer for your thoughts.","at":33.27,"press":[[0,33.9],[1,37.2],[2,40.75]],"chips":[["✓ Saved · Reposted",41.050000000000004,false]]}];
+        const RAILDONE = [];
+        const D = 44.4;
+        const panel = document.getElementById("v2-linkedin-panel");
+        const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+        STEPS.forEach((s, i) => {
+          const block = el("div", "step");
+          block.id = "v2-linkedin-step-" + i;
+          block.append(el("div", "step-num", String(s.n).padStart(2, "0")), el("div", "step-of", "OF 10"), el("div", "step-title", s.title));
+          const keys = el("div", "step-keys");
+          s.caps = [];
+          (s.keys || []).forEach((group, g) => {
+            if (g > 0 && group.join) keys.append(el("span", "cap-join", group.join));
+            const wrap = el("div", "key-group");
+            const caps = [];
+            group.caps.forEach((k, j) => {
+              if (j > 0) wrap.append(el("span", "cap-join", "+"));
+              const [label, sub] = k.split("|");
+              const cw = el("div", "cap-wrap");
+              const cap = el("span", "cap" + (label.length > 3 ? " cap-small" : ""), label);
+              cw.append(cap);
+              if (sub) cw.append(el("span", "cap-sub", sub));
+              wrap.append(cw);
+              caps.push(cap);
+            });
+            keys.append(wrap);
+            s.caps.push(caps);
+          });
+          if ((s.keys || []).length) block.append(keys);
+          block.append(el("div", "step-body", s.body));
+          const chips = el("div", "chips");
+          s.chips.forEach(([text, , warn], c) => { const ch = el("div", "chip" + (warn ? " chip--warn" : ""), text); ch.id = "v2-linkedin-chip-" + i + "-" + c; chips.append(ch); });
+          block.append(chips);
+          panel.append(block);
+        });
+
+        const tl = gsap.timeline({ paused: true });
+
+        tl.fromTo("#v2-linkedin-dots", { x: 0, y: 0 }, { x: -44, y: -22, duration: 44.4, ease: "none" }, 0);
+        tl.fromTo("#v2-linkedin-glow", { scale: 0.92 }, { scale: 1.06, duration: 4, ease: "sine.inOut", yoyo: true, repeat: 10 }, 0);
+        tl.fromTo("#v2-linkedin-top", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0);
+        RAILDONE.forEach((i) => tl.set("#v2-linkedin-fill-" + i, { scaleX: 1 }, 0).set("#v2-linkedin-label-" + i, { color: "#0f766e" }, 0));
+        for (let i = 0; i < 10; i++) if (!RAILDONE.includes(i)) tl.set("#v2-linkedin-fill-" + i, { scaleX: 0 }, 0);
+
+        function pressCaps(caps, t) {
+          caps.forEach((cap) => {
+            tl.to(cap, { scale: 0.9, y: 6, boxShadow: "0 2px 0 #13201d", duration: 0.1, ease: "power1.in" }, t);
+            tl.to(cap, { scale: 1, y: 0, boxShadow: "0 8px 0 #13201d", duration: 0.5, ease: "back.out(2)" }, t + 0.1);
+            tl.to(cap, { backgroundColor: "#f5b83d", duration: 0.08, ease: "none" }, t);
+            tl.to(cap, { backgroundColor: "#ffffff", duration: 0.25, ease: "power1.out" }, t + 0.3);
+          });
+        }
+
+        STEPS.forEach((s, i) => {
+          const sel = "#v2-linkedin-step-" + i;
+          const next = STEPS[i + 1];
+          tl.fromTo(sel, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, s.at);
+          if (document.querySelector(sel + " .cap-wrap")) tl.fromTo(sel + " .cap-wrap", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.2)", stagger: 0.06 }, s.at + 0.12);
+          if (next) tl.to(sel, { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, next.at - 0.28);
+          s.press.forEach(([g, t]) => pressCaps(s.caps[g], t));
+          s.chips.forEach(([, t], c) => tl.fromTo("#v2-linkedin-chip-" + i + "-" + c, { opacity: 0, scale: 0.8, x: -12 }, { opacity: 1, scale: 1, x: 0, duration: 0.4, ease: "back.out(2)" }, t));
+          const r = s.n - 1;
+          tl.fromTo("#v2-linkedin-fill-" + r, { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power2.out" }, s.at);
+          tl.fromTo("#v2-linkedin-label-" + r, { color: "#4b5b57" }, { color: "#0f766e", duration: 0.3, ease: "none" }, s.at);
+        });
+        window.__timelines["v2-linkedin"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

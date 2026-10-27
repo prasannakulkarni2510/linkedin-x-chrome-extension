@@ -213,6 +213,9 @@ extension/
 dev/               mock feeds, test server and build, icon script
 tests/unit, tests/e2e
 docs/              product spec, decisions log, tutorial video
+videos/swipe-mode-tutorial/
+                   the tutorial's HyperFrames project: v3 is built by scripts/make-v3.mjs from
+                   assets/v3/script.json (voice + subtitles) and footage from dev/record-demo-v3.js
 ```
 
 </details>

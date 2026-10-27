@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+  #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #14181f; }
+  
+  .paper { position: absolute; inset: 0; background: #f4f1ea; }
+  .light { position: absolute; border-radius: 50%; filter: blur(10px); }
+  .light-a { left: -320px; top: -360px; width: 1100px; height: 1100px; background: radial-gradient(circle, rgba(15,118,110,0.16) 0%, rgba(15,118,110,0) 65%); }
+  .light-b { right: -360px; bottom: -420px; width: 1200px; height: 1200px; background: radial-gradient(circle, rgba(245,184,61,0.16) 0%, rgba(245,184,61,0) 65%); }
+  .win { position: absolute; left: 220px; top: 58px; width: 1480px; height: 965px; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 40px 100px rgba(20,24,31,0.18), 0 0 0 1px rgba(20,24,31,0.08); }
+  .bar { position: absolute; left: 0; right: 0; top: 0; height: 40px; display: flex; align-items: center; gap: 9px; padding: 0 16px; background: #fbfaf7; border-bottom: 1px solid #e3ddd1; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; background: #ddd6c8; flex: none; }
+  .addr { margin-left: 14px; height: 26px; border-radius: 13px; background: #efeae0; display: flex; align-items: center; gap: 9px; padding: 0 14px; font: 600 15px "JetBrains Mono", monospace; color: #5b6470; white-space: nowrap; }
+  .addr span { width: 16px; height: 16px; display: block; }
+  .addr svg { width: 100%; height: 100%; display: block; }
+  .screen { position: absolute; left: 0; top: 40px; width: 1480px; height: 925px; overflow: hidden; background: #fff; }
+  .cam { position: absolute; left: 0; top: 0; width: 1480px; height: 925px; transform-origin: 0 0; }
+  .cam video { position: absolute; left: 0; top: 0; width: 1480px; height: 925px; }
+      </style>
+      <div data-hf-id="hf-0pdc" id="root" data-composition-id="v3-shot" data-width="1920" data-height="1080" data-duration="14.4">
+        <div data-hf-id="hf-4tcf" id="v3-shot-paper" class="paper"></div>
+        <div data-hf-id="hf-ehhr" id="v3-shot-la" class="light light-a" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-lv7n" id="v3-shot-lb" class="light light-b" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-pyhn" id="v3-shot-win" class="win">
+          <div data-hf-id="hf-ufsv" class="bar"><div data-hf-id="hf-lu65" class="dot"></div><div data-hf-id="hf-ww7l" class="dot"></div><div data-hf-id="hf-y34o" class="dot"></div>
+            <div data-hf-id="hf-fnql" class="addr"><span data-hf-id="hf-uckh"><svg data-hf-id="hf-ait2" fill="#000000" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-5mpm" d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z" /></svg></span>x.com/marcuswebb/status · demo post</div>
+          </div>
+          <div data-hf-id="hf-cdmk" class="screen">
+            <div data-hf-id="hf-862q" id="v3-shot-cam" class="cam" data-layout-allow-overflow="">
+              <video data-hf-id="hf-7ffo" id="v3-shot-video" class="clip" src="assets/v3/shot.mp4" muted playsinline data-start="0" data-duration="14.4" data-media-start="0.38" data-track-index="0"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#v3-shot-la", { x: 0, y: 0 }, { x: 140, y: 90, duration: 14.4, ease: "sine.inOut" }, 0);
+        tl.fromTo("#v3-shot-lb", { x: 0, y: 0 }, { x: -120, y: -70, duration: 14.4, ease: "sine.inOut" }, 0);
+
+        tl.to("#v3-shot-win", { opacity: 0, scale: 0.97, duration: 0.35, ease: "power2.in" }, 14.02);
+        tl.set("#v3-shot-cam", { scale: 1.08, x: -59.2, y: -74 }, 0);
+        tl.to("#v3-shot-cam", { scale: 1.34, x: -503.2, y: -184.79, duration: 0.9, ease: "power2.inOut" }, 1.92);
+        tl.to("#v3-shot-cam", { scale: 1, x: 0, y: 0, duration: 0.8, ease: "power2.inOut" }, 10.19);
+        window.__timelines["v3-shot"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

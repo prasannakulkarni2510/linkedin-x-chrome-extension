@@ -1,0 +1,13 @@
+01-hook	Endless scrolling buries the posts you care about. Swipe Mode shows your LinkedIn feed and your X timeline, one post at a time.
+02-install	Get it from GitHub. Download the ZIP, turn on Developer mode in Chrome, click Load unpacked, and pick the extension folder.
+03-start	On LinkedIn, click the Swipe Mode button, or press Alt, Shift, S.
+04-read	Each post gets the whole card. Arrow keys scroll. Left skips it, U brings it back, and promoted posts stay out of the way.
+05-engage	Right opens your options, numbered one to eight. Nothing happens until you pick.
+06-react	Press R and a number to react. Swipe Mode waits for LinkedIn to confirm, then moves on. Press Escape to stay for one more action.
+07-comment	C writes a comment, and Control Enter posts it. S saves. Three reposts, and four adds your thoughts in LinkedIn's own window.
+08-trust	If the site doesn't confirm, Swipe Mode tells you. Nothing is marked done on a guess, and a pacing guard keeps you at human speed.
+09-x	On X, it's the same keys. R likes, C replies, S bookmarks, and four quotes. X's own shortcuts are switched off, so a stray key never acts on the wrong post.
+10-swipe	On a trackpad, just swipe. With a mouse, drag the grip handle. It never selects text.
+11-exit	Question mark lists every shortcut. Escape returns you to where you started, and X leaves you on the current post.
+12-settings	In Options, tune the timing, keep the pacing guard on, and check your tab if a site changes its layout.
+13-close	Swipe Mode. Every action stays your choice.

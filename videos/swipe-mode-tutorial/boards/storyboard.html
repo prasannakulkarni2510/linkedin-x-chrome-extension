@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Swipe Mode v2 storyboard</title>
+<style>
+:root{--bg:#f4f6f5;--card:#fff;--ink:#13201d;--muted:#56645f;--accent:#0f766e;--line:#dfe6e3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111614;--card:#1a211f;--ink:#e7eeeb;--muted:#9aa8a3;--accent:#3cc4b4;--line:#2a3431}}
+:root[data-theme="dark"]{--bg:#111614;--card:#1a211f;--ink:#e7eeeb;--muted:#9aa8a3;--accent:#3cc4b4;--line:#2a3431}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+header{max-width:1400px;margin:0 auto;padding:40px 24px 8px}h1{margin:0;font-size:28px;letter-spacing:-.02em}header p{margin:6px 0 0;color:var(--muted)}
+main{max-width:1400px;margin:0 auto;padding:8px 24px 64px;display:grid;grid-template-columns:repeat(auto-fill,minmax(400px,1fr));gap:22px}
+.act{grid-column:1/-1;margin-top:18px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.frame{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;padding-bottom:14px}
+.frame img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid var(--line)}
+.title{margin:12px 16px 0;font-weight:700;font-size:16px}.time{margin:2px 16px 0;color:var(--muted);font-variant-numeric:tabular-nums;font-size:13px}
+.words{margin:8px 16px 0}.vo{margin:8px 16px 0;color:var(--muted);font-style:italic}
+@media (max-width:480px){main{grid-template-columns:1fr;padding:8px 16px 48px}header{padding:28px 16px 8px}}
+</style></head><body>
+<header><h1>Swipe Mode v2: every feature, LinkedIn and X</h1><p>119.4 seconds · male voice (Adam) · music bed · stills from the real recordings at each beat’s key moment</p></header>
+<main>
+<section class="act">Act 1: Hook</section>
+<div class="frame"><img src="stills/frame-00-at-6.2s.png" alt="" /><div class="title">01: The hook</div><div class="time">0.0 to 9.4s</div><p class="words">Endless feed stops; one post comes forward; Swipe Mode, LinkedIn and X land.</p><p class="vo">“Endless scrolling buries the posts you care about. Swipe Mode shows your LinkedIn feed and your X timeline, one post at a time.”</p></div>
+<div class="frame"><img src="stills/frame-01-at-15.4s.png" alt="" /><div class="title">02: Install from GitHub</div><div class="time">9.4 to 19.4s</div><p class="words">Live captures: your repo with Code → Download ZIP, then chrome://extensions.</p><p class="vo">“Get it from GitHub. Download the ZIP, turn on Developer mode in Chrome, click Load unpacked, and pick the extension folder.”</p></div>
+<section class="act">Act 2: LinkedIn</section>
+<div class="frame"><img src="stills/frame-02-at-22.6s.png" alt="" /><div class="title">03: Start</div><div class="time">19.4 to 24.3s</div><p class="words">Click the button, or Alt+Shift+S.</p><p class="vo">“On LinkedIn, click the Swipe Mode button, or press Alt, Shift, S.”</p></div>
+<div class="frame"><img src="stills/frame-03-at-30.3s.png" alt="" /><div class="title">04: Read · skip · undo</div><div class="time">24.3 to 31.8s</div><p class="words">↓ scroll, ← skip, U brings it back; the promoted post is passed over.</p><p class="vo">“Each post gets the whole card. Arrow keys scroll. Left skips it, U brings it back, and promoted posts stay out of the way.”</p></div>
+<div class="frame"><img src="stills/frame-04-at-35.5s.png" alt="" /><div class="title">05: Engage menu</div><div class="time">31.8 to 38.6s</div><p class="words">→ opens numbered actions; nothing is sent.</p><p class="vo">“Right opens your options, numbered one to eight. Nothing happens until you pick.”</p></div>
+<div class="frame"><img src="stills/frame-05-at-45.1s.png" alt="" /><div class="title">06: React</div><div class="time">38.6 to 47.8s</div><p class="words">R then 2 reacts Celebrate; Esc keeps the next post for one more action.</p><p class="vo">“Press R and a number to react. Swipe Mode waits for LinkedIn to confirm, then moves on. Press Escape to stay for one more action.”</p></div>
+<div class="frame"><img src="stills/frame-06-at-53.8s.png" alt="" /><div class="title">07: Comment · save · repost</div><div class="time">47.8 to 63.8s</div><p class="words">C, Ctrl+Enter, S, 3, then 4 hands over to LinkedIn’s composer.</p><p class="vo">“C writes a comment, and Control Enter posts it. S saves. Three reposts, and four adds your thoughts in LinkedIn's own window.”</p></div>
+<section class="act">Act 3: Trust</section>
+<div class="frame"><img src="stills/frame-07-at-66.8s.png" alt="" /><div class="title">08: Honest results</div><div class="time">63.8 to 71.7s</div><p class="words">The site didn’t confirm: a clear failure, nothing marked done; the pacing guard holds a too-fast action.</p><p class="vo">“If the site doesn't confirm, Swipe Mode tells you. Nothing is marked done on a guess, and a pacing guard keeps you at human speed.”</p></div>
+<section class="act">Act 4: X</section>
+<div class="frame"><img src="stills/frame-08-at-79.5s.png" alt="" /><div class="title">09: Same keys on X</div><div class="time">71.7 to 88.8s</div><p class="words">R like, C reply, S bookmark, 4 quote, on the X timeline.</p><p class="vo">“On X, it's the same keys. R likes, C replies, S bookmarks, and four quotes. X's own shortcuts are switched off, so a stray key never acts on the wrong post.”</p></div>
+<div class="frame"><img src="stills/frame-09-at-92.8s.png" alt="" /><div class="title">10: Swipe or drag</div><div class="time">88.8 to 96.3s</div><p class="words">Trackpad swipe, drag the grip handle, long-press for the menu.</p><p class="vo">“On a trackpad, just swipe. With a mouse, drag the grip handle. It never selects text.”</p></div>
+<div class="frame"><img src="stills/frame-10-at-101.6s.png" alt="" /><div class="title">11: Help · exit</div><div class="time">96.3 to 103.9s</div><p class="words">? shortcuts, Esc back to where you started.</p><p class="vo">“Question mark lists every shortcut. Escape returns you to where you started, and X leaves you on the current post.”</p></div>
+<section class="act">Act 5: Settings and close</section>
+<div class="frame"><img src="stills/frame-11-at-108.8s.png" alt="" /><div class="title">12: Settings</div><div class="time">103.9 to 112.8s</div><p class="words">The real Options page: timing, pacing guard, promoted posts, check my tab.</p><p class="vo">“In Options, tune the timing, keep the pacing guard on, and check your tab if a site changes its layout.”</p></div>
+<div class="frame"><img src="stills/frame-12-at-115s.png" alt="" /><div class="title">13: Close</div><div class="time">112.8 to 119.4s</div><p class="words">Logo, LinkedIn and X, the GitHub address, “Every action stays your choice.”</p><p class="vo">“Swipe Mode. Every action stays your choice.”</p></div>
+</main></body></html>

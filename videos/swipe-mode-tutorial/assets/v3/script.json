@@ -1,0 +1,64 @@
+{
+  "voice": "af_heart",
+  "speed": 1.0,
+  "gap": 0.28,
+  "beatTail": 0.9,
+  "beats": [
+    { "id": "hook", "scene": "graphic", "phrases": [
+      { "text": "This image took five keypresses." },
+      { "text": "No mouse." }
+    ]},
+    { "id": "title", "scene": "graphic", "phrases": [
+      { "text": "This is Swipe Mode." },
+      { "text": "Your LinkedIn feed and your X timeline," },
+      { "text": "one post at a time." }
+    ]},
+    { "id": "li-start", "scene": "linkedin", "phrases": [
+      { "text": "Press Alt, Shift, S to start.", "keys": ["Alt+Shift+S"], "at": 0.9 },
+      { "text": "Every post gets the whole card.", "keys": ["↓"], "at": 0.8 }
+    ]},
+    { "id": "li-skip", "scene": "linkedin", "phrases": [
+      { "text": "Left skips it.", "keys": ["←"], "at": 0.1 },
+      { "text": "U brings it back.", "keys": ["U"], "at": 0.1 }
+    ]},
+    { "id": "li-act", "scene": "linkedin", "phrases": [
+      { "text": "Right shows your options.", "keys": ["→"], "at": 0.1 },
+      { "text": "Nothing happens until you choose." },
+      { "text": "R and a number reacts.", "keys": ["R", "2"], "at": 0.1 },
+      { "text": "S saves the post.", "keys": ["S"], "at": 0.1 }
+    ]},
+    { "id": "li-trust", "scene": "linkedin-broken", "phrases": [
+      { "text": "If LinkedIn doesn't confirm," },
+      { "text": "Swipe Mode tells you, and marks nothing done." }
+    ]},
+    { "id": "x", "scene": "x", "phrases": [
+      { "text": "On X, it's the same keys.", "keys": ["Alt+Shift+S"], "at": 0.1 },
+      { "text": "R likes.", "keys": ["R"], "at": 0.1 },
+      { "text": "S bookmarks.", "keys": ["S"], "at": 0.1 },
+      { "text": "And X's own shortcuts stay out of the way." }
+    ]},
+    { "id": "shot", "scene": "x-post", "phrases": [
+      { "text": "Now, the new part." },
+      { "text": "Press P on any post.", "keys": ["P"], "at": 0.3 },
+      { "text": "Replies load with their profile pictures." },
+      { "text": "Pick them by number.", "keys": ["1", "3"], "at": 0.3 },
+      { "text": "R drops one you don't want, and the next takes its place.", "keys": ["R"], "at": 0.3 },
+      { "text": "Enter saves a square image,", "keys": ["Enter"], "at": 0.3 },
+      { "text": "straight to a folder you pick once." }
+    ]},
+    { "id": "result", "scene": "graphic", "phrases": [
+      { "text": "Clean, white, and ready to share." }
+    ]},
+    { "id": "install", "scene": "graphic", "phrases": [
+      { "text": "Swipe Mode is free on GitHub." },
+      { "text": "Load it unpacked in Chrome, and you're set." }
+    ]},
+    { "id": "credits", "scene": "graphic", "phrases": [
+      { "text": "Built by Prasanna Kulkarni." },
+      { "text": "Find me on GitHub and LinkedIn." }
+    ]},
+    { "id": "pacos", "scene": "graphic", "phrases": [
+      { "text": "And scan to try my other project, PACOS." }
+    ]}
+  ]
+}

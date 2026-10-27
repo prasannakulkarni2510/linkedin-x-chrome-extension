@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+  #root { position: absolute; inset: 0; overflow: hidden; font-family: "Montserrat", sans-serif; color: #14181f; }
+  
+  .paper { position: absolute; inset: 0; background: #f4f1ea; }
+  .light { position: absolute; border-radius: 50%; filter: blur(10px); }
+  .light-a { left: -320px; top: -360px; width: 1100px; height: 1100px; background: radial-gradient(circle, rgba(15,118,110,0.16) 0%, rgba(15,118,110,0) 65%); }
+  .light-b { right: -360px; bottom: -420px; width: 1200px; height: 1200px; background: radial-gradient(circle, rgba(245,184,61,0.16) 0%, rgba(245,184,61,0) 65%); }
+  .win { position: absolute; left: 220px; top: 58px; width: 1480px; height: 965px; border-radius: 18px; overflow: hidden; background: #fff; box-shadow: 0 40px 100px rgba(20,24,31,0.18), 0 0 0 1px rgba(20,24,31,0.08); }
+  .bar { position: absolute; left: 0; right: 0; top: 0; height: 40px; display: flex; align-items: center; gap: 9px; padding: 0 16px; background: #fbfaf7; border-bottom: 1px solid #e3ddd1; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; background: #ddd6c8; flex: none; }
+  .addr { margin-left: 14px; height: 26px; border-radius: 13px; background: #efeae0; display: flex; align-items: center; gap: 9px; padding: 0 14px; font: 600 15px "JetBrains Mono", monospace; color: #5b6470; white-space: nowrap; }
+  .addr span { width: 16px; height: 16px; display: block; }
+  .addr svg { width: 100%; height: 100%; display: block; }
+  .screen { position: absolute; left: 0; top: 40px; width: 1480px; height: 925px; overflow: hidden; background: #fff; }
+  .cam { position: absolute; left: 0; top: 0; width: 1480px; height: 925px; transform-origin: 0 0; }
+  .cam video { position: absolute; left: 0; top: 0; width: 1480px; height: 925px; }
+      </style>
+      <div data-hf-id="hf-wvuq" id="root" data-composition-id="v3-linkedin" data-width="1920" data-height="1080" data-duration="15.5">
+        <div data-hf-id="hf-unlx" id="v3-linkedin-paper" class="paper"></div>
+        <div data-hf-id="hf-ua1p" id="v3-linkedin-la" class="light light-a" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-llxl" id="v3-linkedin-lb" class="light light-b" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-jnrp" id="v3-linkedin-win" class="win">
+          <div data-hf-id="hf-ufsv" class="bar"><div data-hf-id="hf-lu65" class="dot"></div><div data-hf-id="hf-ww7l" class="dot"></div><div data-hf-id="hf-y34o" class="dot"></div>
+            <div data-hf-id="hf-zrm9" class="addr"><span data-hf-id="hf-uckh"><svg data-hf-id="hf-tk7g" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 256"><path data-hf-id="hf-z5ur" d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453" fill="#0A66C2" /></svg></span>linkedin.com/feed · demo feed</div>
+          </div>
+          <div data-hf-id="hf-cdmk" class="screen">
+            <div data-hf-id="hf-axjw" id="v3-linkedin-cam" class="cam" data-layout-allow-overflow="">
+              <video data-hf-id="hf-maw7" id="v3-linkedin-video" class="clip" src="assets/v3/linkedin.mp4" muted playsinline data-start="0" data-duration="15.5" data-media-start="0.37" data-track-index="0"></video>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#v3-linkedin-la", { x: 0, y: 0 }, { x: 140, y: 90, duration: 15.5, ease: "sine.inOut" }, 0);
+        tl.fromTo("#v3-linkedin-lb", { x: 0, y: 0 }, { x: -120, y: -70, duration: 15.5, ease: "sine.inOut" }, 0);
+        tl.fromTo("#v3-linkedin-win", { opacity: 0, y: 40, scale: 0.97 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 0);
+
+        tl.set("#v3-linkedin-cam", { scale: 1.08, x: -59.2, y: -74 }, 0);
+        tl.to("#v3-linkedin-cam", { scale: 1.12, x: -88.8, y: -111, duration: 15.5, ease: "none" }, 0);
+        window.__timelines["v3-linkedin"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

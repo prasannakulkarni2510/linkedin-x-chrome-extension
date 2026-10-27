@@ -1,0 +1,112 @@
+{
+  "total": 119.42,
+  "timing": [
+    {
+      "vo": "01-hook",
+      "start": 0.5,
+      "end": 7.84
+    },
+    {
+      "scene": "v2-hook",
+      "start": 0,
+      "end": 9.2,
+      "mid": 4.6
+    },
+    {
+      "vo": "02-install",
+      "start": 9.75,
+      "end": 17.02
+    },
+    {
+      "scene": "v2-install",
+      "start": 9.2,
+      "end": 19,
+      "mid": 14.1
+    },
+    {
+      "vo": "03-start",
+      "start": 19.7,
+      "end": 23.37
+    },
+    {
+      "vo": "04-read",
+      "start": 24.63,
+      "end": 31.86
+    },
+    {
+      "vo": "05-engage",
+      "start": 32.11,
+      "end": 36.42
+    },
+    {
+      "vo": "06-react",
+      "start": 38.9,
+      "end": 46.82
+    },
+    {
+      "vo": "07-comment",
+      "start": 48.1,
+      "end": 55.38
+    },
+    {
+      "scene": "v2-linkedin",
+      "start": 19,
+      "end": 63.4,
+      "mid": 41.2
+    },
+    {
+      "vo": "08-trust",
+      "start": 64.1,
+      "end": 71.38
+    },
+    {
+      "scene": "v2-trust",
+      "start": 63.4,
+      "end": 71.44,
+      "mid": 67.42
+    },
+    {
+      "vo": "09-x",
+      "start": 72.04,
+      "end": 81.58
+    },
+    {
+      "vo": "10-swipe",
+      "start": 89.07,
+      "end": 93.85
+    },
+    {
+      "vo": "11-exit",
+      "start": 96.64,
+      "end": 103.02
+    },
+    {
+      "scene": "v2-x",
+      "start": 71.44,
+      "end": 103.62,
+      "mid": 87.53
+    },
+    {
+      "vo": "12-settings",
+      "start": 104.22,
+      "end": 110.04
+    },
+    {
+      "scene": "v2-settings",
+      "start": 103.62,
+      "end": 112.02,
+      "mid": 107.82
+    },
+    {
+      "vo": "13-close",
+      "start": 113.12,
+      "end": 115.57
+    },
+    {
+      "scene": "v2-close",
+      "start": 112.02,
+      "end": 119.42,
+      "mid": 115.72
+    }
+  ]
+}

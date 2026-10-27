@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+  #root { position: absolute; inset: 0; overflow: hidden; background: #eef3f1; font-family: "Montserrat", sans-serif; color: #13201d; }
+  .dots { position: absolute; inset: -60px; background-image: radial-gradient(#0f766e 2.2px, transparent 2.4px); background-size: 44px 44px; opacity: 0.12; }
+  .glow { position: absolute; right: -380px; top: 40px; width: 1000px; height: 1000px; border-radius: 50%; background: radial-gradient(circle, rgba(15,118,110,0.26) 0%, rgba(15,118,110,0) 65%); }
+  .top { position: absolute; left: 64px; right: 64px; top: 34px; display: flex; justify-content: space-between; align-items: center; font: 700 24px "JetBrains Mono", monospace; letter-spacing: 0.1em; }
+  .top-left { display: flex; align-items: center; gap: 14px; color: #0f766e; }
+  .top-left svg, .addr svg { display: block; flex: none; }
+  .top-right { color: #4b5b57; }
+  .window { position: absolute; left: 64px; top: 96px; width: 1222px; height: 813px; border-radius: 22px; border: 3px solid #13201d; background: #ffffff; box-shadow: 0 12px 0 #13201d; overflow: hidden; }
+  .chrome { position: absolute; left: 0; right: 0; top: 0; height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 18px; background: #f6f9f8; border-bottom: 3px solid #13201d; }
+  .wdot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #13201d; flex: none; }
+  .addr { position: relative; margin-left: 18px; flex: 1; height: 30px; border-radius: 15px; background: #e4ecea; display: flex; align-items: center; gap: 10px; padding: 0 16px; font: 700 18px "JetBrains Mono", monospace; color: #4b5b57; white-space: nowrap; overflow: hidden; }
+  .screen { position: absolute; left: 0; top: 47px; width: 1216px; height: 760px; overflow: hidden; }
+  .screen img { position: absolute; left: 0; top: 0; width: 1216px; height: 760px; }
+  /* Recordings are scaled so their last 8 source pixels fall outside the window: that hides the
+     sync marker in the bottom-right corner. */
+  .screen video { position: absolute; left: 0; top: 0; width: 1223.65px; height: 764.78px; }
+  .panel { position: absolute; left: 1336px; top: 104px; width: 524px; height: 780px; }
+  .step { position: absolute; left: 0; top: 0; width: 524px; opacity: 0; }
+  .step-num { font-weight: 900; font-size: 132px; line-height: 0.9; letter-spacing: -0.05em; color: #0f766e; }
+  .step-of { font: 700 24px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.08em; margin-top: 12px; }
+  .step-title { font-weight: 900; font-size: 54px; letter-spacing: -0.035em; line-height: 1.04; margin-top: 22px; }
+  .step-keys { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 14px 12px; margin-top: 30px; }
+  .key-group { display: flex; align-items: center; gap: 8px; }
+  .cap-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .cap { display: inline-flex; align-items: center; justify-content: center; flex: none; min-width: 80px; height: 80px; padding: 0 16px; border-radius: 16px; background: #ffffff; border: 3px solid #13201d; box-shadow: 0 8px 0 #13201d; font: 700 36px "JetBrains Mono", monospace; color: #13201d; }
+  .cap-small { font-size: 26px; }
+  .cap-sub { font: 700 22px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.04em; }
+  .cap-join { font: 700 28px "JetBrains Mono", monospace; color: #4b5b57; }
+  .step-body { margin-top: 30px; font-size: 32px; line-height: 1.36; }
+  .chips { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 24px; }
+  .chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 999px; background: #0f766e; color: #ffffff; font-weight: 700; font-size: 26px; opacity: 0; }
+  .chip--warn { background: #13201d; }
+  .rail { position: absolute; left: 64px; right: 64px; top: 958px; display: flex; gap: 10px; }
+  .rail-seg { flex: 1; min-width: 0; }
+  .rail-track { height: 10px; border-radius: 5px; background: #cfdcd8; overflow: hidden; }
+  .rail-fill { width: 100%; height: 100%; background: #0f766e; transform-origin: 0 50%; }
+  .rail-label { margin-top: 14px; font: 700 20px "JetBrains Mono", monospace; letter-spacing: 0.06em; color: #4b5b57; text-align: center; white-space: nowrap; }
+  .ring { position: absolute; border: 5px solid #f5b83d; border-radius: 14px; box-shadow: 0 0 0 6px rgba(245,184,61,0.28); opacity: 0; }
+
+      </style>
+      <div data-hf-id="hf-gvxi" id="root" data-composition-id="v2-x" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-czc2" id="v2-x-dots" class="dots"></div>
+        <div data-hf-id="hf-42cb" id="v2-x-glow" class="glow" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-rfje" id="v2-x-top" class="top"><div data-hf-id="hf-ab53" class="top-left">SWIPE MODE ON <span data-hf-id="hf-dv32" style="width:30px;height:30px"><svg data-hf-id="hf-ait2" fill="#000000" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-5mpm" d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z" /></svg></span> X</div><div data-hf-id="hf-i080" class="top-right">REAL RECORDING · MOCK FEED, FICTIONAL PEOPLE</div></div>
+        <div data-hf-id="hf-6fbm" id="v2-x-window" class="window">
+          <div data-hf-id="hf-6ex2" class="chrome"><div data-hf-id="hf-eib4" class="wdot"></div><div data-hf-id="hf-q1hk" class="wdot"></div><div data-hf-id="hf-oukh" class="wdot"></div>
+            <div data-hf-id="hf-kszs" id="v2-x-addr" class="addr"><span data-hf-id="hf-zp62" style="width:22px;height:22px"><svg data-hf-id="hf-jo62" fill="#000000" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path data-hf-id="hf-b00u" d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z" /></svg></span><span data-hf-id="hf-j2fd" id="v2-x-addr-text">x.com/home · demo timeline</span></div>
+          </div>
+          <div data-hf-id="hf-cdmk" class="screen">
+            <video data-hf-id="hf-wsa2" id="v2-x-video" class="clip" data-layout-allow-overflow="" src="assets/v2/x.mp4" muted playsinline data-start="0" data-duration="32.18" data-media-start="0.7" data-track-index="0"></video>
+          </div>
+        </div>
+        <div data-hf-id="hf-3c8i" id="v2-x-panel" class="panel"></div>
+        <div data-hf-id="hf-y2va" id="v2-x-rail" class="rail"><div data-hf-id="hf-dcr0" class="rail-seg"><div data-hf-id="hf-gst6" class="rail-track"><div data-hf-id="hf-y0ys" id="v2-x-fill-0" class="rail-fill"></div></div><div data-hf-id="hf-4t56" id="v2-x-label-0" class="rail-label">START</div></div><div data-hf-id="hf-16n8" class="rail-seg"><div data-hf-id="hf-ku0u" class="rail-track"><div data-hf-id="hf-108d" id="v2-x-fill-1" class="rail-fill"></div></div><div data-hf-id="hf-k3o7" id="v2-x-label-1" class="rail-label">READ</div></div><div data-hf-id="hf-zzq5" class="rail-seg"><div data-hf-id="hf-l8bv" class="rail-track"><div data-hf-id="hf-4yce" id="v2-x-fill-2" class="rail-fill"></div></div><div data-hf-id="hf-qodz" id="v2-x-label-2" class="rail-label">ENGAGE</div></div><div data-hf-id="hf-0e16" class="rail-seg"><div data-hf-id="hf-lmmw" class="rail-track"><div data-hf-id="hf-8wgf" id="v2-x-fill-3" class="rail-fill"></div></div><div data-hf-id="hf-htz4" id="v2-x-label-3" class="rail-label">REACT</div></div><div data-hf-id="hf-2dkb" class="rail-seg"><div data-hf-id="hf-iuhp" class="rail-track"><div data-hf-id="hf-cukg" id="v2-x-fill-4" class="rail-fill"></div></div><div data-hf-id="hf-g87v" id="v2-x-label-4" class="rail-label">COMMENT</div></div><div data-hf-id="hf-2rvc" class="rail-seg"><div data-hf-id="hf-j8sq" class="rail-track"><div data-hf-id="hf-dm89" id="v2-x-fill-5" class="rail-fill"></div></div><div data-hf-id="hf-0zn6" id="v2-x-label-5" class="rail-label">SAVE</div></div><div data-hf-id="hf-1ky9" class="rail-seg"><div data-hf-id="hf-jn3r" class="rail-track"><div data-hf-id="hf-hkca" id="v2-x-fill-6" class="rail-fill"></div></div><div data-hf-id="hf-ze3a" id="v2-x-label-6" class="rail-label">TRUST</div></div><div data-hf-id="hf-1z9a" class="rail-seg"><div data-hf-id="hf-k1es" class="rail-track"><div data-hf-id="hf-ligb" id="v2-x-fill-7" class="rail-fill"></div></div><div data-hf-id="hf-158n" id="v2-x-label-7" class="rail-label">X</div></div><div data-hf-id="hf-3ysf" class="rail-seg"><div data-hf-id="hf-nm61" class="rail-track"><div data-hf-id="hf-ro64" id="v2-x-fill-8" class="rail-fill"></div></div><div data-hf-id="hf-ltv4" id="v2-x-label-8" class="rail-label">SWIPE</div></div><div data-hf-id="hf-4d3g" class="rail-seg"><div data-hf-id="hf-o0h2" class="rail-track"><div data-hf-id="hf-sftx" id="v2-x-fill-9" class="rail-fill"></div></div><div data-hf-id="hf-sw6z" id="v2-x-label-9" class="rail-label">EXIT</div></div></div>
+      </div>
+      <script>
+        const STEPS = [{"n":8,"title":"Same keys on X","keys":[{"caps":["R|like"]},{"caps":["C|reply"]},{"caps":["S|bookmark"]},{"caps":["4|quote"]}],"body":"X's own shortcuts are off while Swipe Mode is open.","at":0.5,"press":[[0,2.9],[1,5.77],[1,7.43],[2,10.1],[3,13.27]],"chips":[["✓ Liked · Replied · Bookmarked · Quoted",14.969999999999999,false]]},{"n":9,"title":"Swipe or drag","keys":[{"caps":["Swipe|trackpad"]},{"caps":["⠿ Drag|grip"]},{"caps":["Hold|menu"]}],"body":"The grip handle never selects text.","at":17.33,"press":[[0,17.7],[1,20.83],[2,23.03]],"chips":[]},{"n":10,"title":"Help · exit","keys":[{"caps":["?|help"]},{"caps":["Esc|back"]},{"caps":["X|stay here"]}],"body":"Esc returns you to where you started.","at":24.9,"press":[[0,25.13],[1,27.47],[1,28.97]],"chips":[["✓ Back where you started",29.17,false]]}];
+        const RAILDONE = [0,1,2,3,4,5,6];
+        const D = 32.18;
+        const panel = document.getElementById("v2-x-panel");
+        const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+        STEPS.forEach((s, i) => {
+          const block = el("div", "step");
+          block.id = "v2-x-step-" + i;
+          block.append(el("div", "step-num", String(s.n).padStart(2, "0")), el("div", "step-of", "OF 10"), el("div", "step-title", s.title));
+          const keys = el("div", "step-keys");
+          s.caps = [];
+          (s.keys || []).forEach((group, g) => {
+            if (g > 0 && group.join) keys.append(el("span", "cap-join", group.join));
+            const wrap = el("div", "key-group");
+            const caps = [];
+            group.caps.forEach((k, j) => {
+              if (j > 0) wrap.append(el("span", "cap-join", "+"));
+              const [label, sub] = k.split("|");
+              const cw = el("div", "cap-wrap");
+              const cap = el("span", "cap" + (label.length > 3 ? " cap-small" : ""), label);
+              cw.append(cap);
+              if (sub) cw.append(el("span", "cap-sub", sub));
+              wrap.append(cw);
+              caps.push(cap);
+            });
+            keys.append(wrap);
+            s.caps.push(caps);
+          });
+          if ((s.keys || []).length) block.append(keys);
+          block.append(el("div", "step-body", s.body));
+          const chips = el("div", "chips");
+          s.chips.forEach(([text, , warn], c) => { const ch = el("div", "chip" + (warn ? " chip--warn" : ""), text); ch.id = "v2-x-chip-" + i + "-" + c; chips.append(ch); });
+          block.append(chips);
+          panel.append(block);
+        });
+
+        const tl = gsap.timeline({ paused: true });
+
+        tl.fromTo("#v2-x-dots", { x: 0, y: 0 }, { x: -44, y: -22, duration: 32.18, ease: "none" }, 0);
+        tl.fromTo("#v2-x-glow", { scale: 0.92 }, { scale: 1.06, duration: 4, ease: "sine.inOut", yoyo: true, repeat: 7 }, 0);
+        tl.fromTo("#v2-x-top", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0);
+        RAILDONE.forEach((i) => tl.set("#v2-x-fill-" + i, { scaleX: 1 }, 0).set("#v2-x-label-" + i, { color: "#0f766e" }, 0));
+        for (let i = 0; i < 10; i++) if (!RAILDONE.includes(i)) tl.set("#v2-x-fill-" + i, { scaleX: 0 }, 0);
+
+        function pressCaps(caps, t) {
+          caps.forEach((cap) => {
+            tl.to(cap, { scale: 0.9, y: 6, boxShadow: "0 2px 0 #13201d", duration: 0.1, ease: "power1.in" }, t);
+            tl.to(cap, { scale: 1, y: 0, boxShadow: "0 8px 0 #13201d", duration: 0.5, ease: "back.out(2)" }, t + 0.1);
+            tl.to(cap, { backgroundColor: "#f5b83d", duration: 0.08, ease: "none" }, t);
+            tl.to(cap, { backgroundColor: "#ffffff", duration: 0.25, ease: "power1.out" }, t + 0.3);
+          });
+        }
+
+        STEPS.forEach((s, i) => {
+          const sel = "#v2-x-step-" + i;
+          const next = STEPS[i + 1];
+          tl.fromTo(sel, { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, s.at);
+          if (document.querySelector(sel + " .cap-wrap")) tl.fromTo(sel + " .cap-wrap", { scale: 0.6, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2.2)", stagger: 0.06 }, s.at + 0.12);
+          if (next) tl.to(sel, { opacity: 0, y: -18, duration: 0.25, ease: "power2.in" }, next.at - 0.28);
+          s.press.forEach(([g, t]) => pressCaps(s.caps[g], t));
+          s.chips.forEach(([, t], c) => tl.fromTo("#v2-x-chip-" + i + "-" + c, { opacity: 0, scale: 0.8, x: -12 }, { opacity: 1, scale: 1, x: 0, duration: 0.4, ease: "back.out(2)" }, t));
+          const r = s.n - 1;
+          tl.fromTo("#v2-x-fill-" + r, { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power2.out" }, s.at);
+          tl.fromTo("#v2-x-label-" + r, { color: "#4b5b57" }, { color: "#0f766e", duration: 0.3, ease: "none" }, s.at);
+        });
+        window.__timelines["v2-x"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

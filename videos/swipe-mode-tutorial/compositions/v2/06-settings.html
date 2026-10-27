@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+  #root { position: absolute; inset: 0; overflow: hidden; background: #eef3f1; font-family: "Montserrat", sans-serif; color: #13201d; }
+  .dots { position: absolute; inset: -60px; background-image: radial-gradient(#0f766e 2.2px, transparent 2.4px); background-size: 44px 44px; opacity: 0.12; }
+  .glow { position: absolute; right: -380px; top: 40px; width: 1000px; height: 1000px; border-radius: 50%; background: radial-gradient(circle, rgba(15,118,110,0.26) 0%, rgba(15,118,110,0) 65%); }
+  .top { position: absolute; left: 64px; right: 64px; top: 34px; display: flex; justify-content: space-between; align-items: center; font: 700 24px "JetBrains Mono", monospace; letter-spacing: 0.1em; }
+  .top-left { display: flex; align-items: center; gap: 14px; color: #0f766e; }
+  .top-left svg, .addr svg { display: block; flex: none; }
+  .top-right { color: #4b5b57; }
+  .window { position: absolute; left: 64px; top: 96px; width: 1222px; height: 813px; border-radius: 22px; border: 3px solid #13201d; background: #ffffff; box-shadow: 0 12px 0 #13201d; overflow: hidden; }
+  .chrome { position: absolute; left: 0; right: 0; top: 0; height: 44px; display: flex; align-items: center; gap: 10px; padding: 0 18px; background: #f6f9f8; border-bottom: 3px solid #13201d; }
+  .wdot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid #13201d; flex: none; }
+  .addr { position: relative; margin-left: 18px; flex: 1; height: 30px; border-radius: 15px; background: #e4ecea; display: flex; align-items: center; gap: 10px; padding: 0 16px; font: 700 18px "JetBrains Mono", monospace; color: #4b5b57; white-space: nowrap; overflow: hidden; }
+  .screen { position: absolute; left: 0; top: 47px; width: 1216px; height: 760px; overflow: hidden; }
+  .screen img { position: absolute; left: 0; top: 0; width: 1216px; height: 760px; }
+  /* Recordings are scaled so their last 8 source pixels fall outside the window: that hides the
+     sync marker in the bottom-right corner. */
+  .screen video { position: absolute; left: 0; top: 0; width: 1223.65px; height: 764.78px; }
+  .panel { position: absolute; left: 1336px; top: 104px; width: 524px; height: 780px; }
+  .step { position: absolute; left: 0; top: 0; width: 524px; opacity: 0; }
+  .step-num { font-weight: 900; font-size: 132px; line-height: 0.9; letter-spacing: -0.05em; color: #0f766e; }
+  .step-of { font: 700 24px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.08em; margin-top: 12px; }
+  .step-title { font-weight: 900; font-size: 54px; letter-spacing: -0.035em; line-height: 1.04; margin-top: 22px; }
+  .step-keys { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 14px 12px; margin-top: 30px; }
+  .key-group { display: flex; align-items: center; gap: 8px; }
+  .cap-wrap { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .cap { display: inline-flex; align-items: center; justify-content: center; flex: none; min-width: 80px; height: 80px; padding: 0 16px; border-radius: 16px; background: #ffffff; border: 3px solid #13201d; box-shadow: 0 8px 0 #13201d; font: 700 36px "JetBrains Mono", monospace; color: #13201d; }
+  .cap-small { font-size: 26px; }
+  .cap-sub { font: 700 22px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.04em; }
+  .cap-join { font: 700 28px "JetBrains Mono", monospace; color: #4b5b57; }
+  .step-body { margin-top: 30px; font-size: 32px; line-height: 1.36; }
+  .chips { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; margin-top: 24px; }
+  .chip { display: inline-flex; align-items: center; gap: 12px; padding: 12px 22px; border-radius: 999px; background: #0f766e; color: #ffffff; font-weight: 700; font-size: 26px; opacity: 0; }
+  .chip--warn { background: #13201d; }
+  .rail { position: absolute; left: 64px; right: 64px; top: 958px; display: flex; gap: 10px; }
+  .rail-seg { flex: 1; min-width: 0; }
+  .rail-track { height: 10px; border-radius: 5px; background: #cfdcd8; overflow: hidden; }
+  .rail-fill { width: 100%; height: 100%; background: #0f766e; transform-origin: 0 50%; }
+  .rail-label { margin-top: 14px; font: 700 20px "JetBrains Mono", monospace; letter-spacing: 0.06em; color: #4b5b57; text-align: center; white-space: nowrap; }
+  .ring { position: absolute; border: 5px solid #f5b83d; border-radius: 14px; box-shadow: 0 0 0 6px rgba(245,184,61,0.28); opacity: 0; }
+
+  .set-head { font: 700 24px "JetBrains Mono", monospace; color: #4b5b57; letter-spacing: 0.08em; }
+  .set-title { font-weight: 900; font-size: 60px; letter-spacing: -0.035em; line-height: 1.04; margin-top: 18px; }
+  .set-list { margin-top: 40px; display: flex; flex-direction: column; gap: 20px; }
+  .set-row { padding: 18px 24px; border-radius: 18px; border: 3px solid #13201d; background: #ffffff; box-shadow: 0 8px 0 #13201d; }
+  .set-row b { display: block; font-size: 32px; font-weight: 900; }
+  .set-row span { display: block; margin-top: 6px; font: 700 24px "JetBrains Mono", monospace; color: #0f766e; }
+  #v2-settings-page { position: absolute; left: 0; top: 0; width: 1216px; height: 1303.4px; }
+  #v2-settings-page img { position: static; width: 1216px; height: 1303.4px; display: block; }
+      </style>
+      <div data-hf-id="hf-metn" id="root" data-composition-id="v2-settings" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-92bh" id="v2-settings-dots" class="dots"></div>
+        <div data-hf-id="hf-7lc4" id="v2-settings-glow" class="glow" data-layout-allow-overflow=""></div>
+        <div data-hf-id="hf-2q6h" id="v2-settings-top" class="top"><div data-hf-id="hf-mb1b" class="top-left">SWIPE MODE · OPTIONS</div><div data-hf-id="hf-ighh" class="top-right">REAL OPTIONS PAGE</div></div>
+        <div data-hf-id="hf-ljg1" id="v2-settings-window" class="window">
+          <div data-hf-id="hf-6ex2" class="chrome"><div data-hf-id="hf-eib4" class="wdot"></div><div data-hf-id="hf-q1hk" class="wdot"></div><div data-hf-id="hf-oukh" class="wdot"></div>
+            <div data-hf-id="hf-93yh" id="v2-settings-addr" class="addr"><span data-hf-id="hf-zp62" style="width:22px;height:22px"><svg data-hf-id="hf-yagd" viewBox="0 0 128 128"><rect data-hf-id="hf-x6hi" x="4" y="4" width="120" height="120" rx="28" fill="#0f766e"/><rect data-hf-id="hf-ibcu" x="34" y="22" width="60" height="84" rx="12" fill="#ffffff" transform="rotate(-8 64 64)" opacity="0.35"/><rect data-hf-id="hf-leeg" x="34" y="22" width="60" height="84" rx="12" fill="#ffffff"/><rect data-hf-id="hf-lpg0" x="44" y="36" width="40" height="6" rx="3" fill="#0f766e" opacity="0.55"/><rect data-hf-id="hf-ik7g" x="44" y="48" width="30" height="6" rx="3" fill="#0f766e" opacity="0.35"/><path data-hf-id="hf-osqs" d="M30 92 16 78l14-14M98 64l14 14-14 14" fill="none" stroke="#fbbf24" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span data-hf-id="hf-d59y" id="v2-settings-addr-text">Swipe Mode · Options</span></div>
+          </div>
+          <div data-hf-id="hf-cdmk" class="screen">
+            <div data-hf-id="hf-56cf" id="v2-settings-page"><img data-hf-id="hf-pb6c" src="assets/v2/options.png" alt="" /></div>
+          </div>
+        </div>
+        <div data-hf-id="hf-51vr" id="v2-settings-panel" class="panel">
+          <div data-hf-id="hf-u3n6" id="v2-settings-head" class="set-head">RIGHT-CLICK THE ICON · OPTIONS</div>
+          <div data-hf-id="hf-wpsp" id="v2-settings-title" class="set-title">Make it yours</div>
+          <div data-hf-id="hf-klq5" class="set-list"><div data-hf-id="hf-6z3d" id="v2-settings-row-0" class="set-row"><b data-hf-id="hf-e6nd">Wait after an action</b><span data-hf-id="hf-nms1">0 to 4 seconds</span></div><div data-hf-id="hf-67fk" id="v2-settings-row-1" class="set-row"><b data-hf-id="hf-dnn8">Pacing guard</b><span data-hf-id="hf-g15g">on by default</span></div><div data-hf-id="hf-evbf" id="v2-settings-row-2" class="set-row"><b data-hf-id="hf-6ohq">Promoted posts</b><span data-hf-id="hf-uvig">left out</span></div><div data-hf-id="hf-ax7e" id="v2-settings-row-3" class="set-row"><b data-hf-id="hf-0tgw">Check my tab</b><span data-hf-id="hf-95lx">if a site changes</span></div></div>
+        </div>
+        <div data-hf-id="hf-fgn9" id="v2-settings-rail" class="rail"><div data-hf-id="hf-dcr0" class="rail-seg"><div data-hf-id="hf-gst6" class="rail-track"><div data-hf-id="hf-bno7" id="v2-settings-fill-0" class="rail-fill"></div></div><div data-hf-id="hf-mczz" id="v2-settings-label-0" class="rail-label">START</div></div><div data-hf-id="hf-16n8" class="rail-seg"><div data-hf-id="hf-ku0u" class="rail-track"><div data-hf-id="hf-5hye" id="v2-settings-fill-1" class="rail-fill"></div></div><div data-hf-id="hf-ouu8" id="v2-settings-label-1" class="rail-label">READ</div></div><div data-hf-id="hf-zzq5" class="rail-seg"><div data-hf-id="hf-l8bv" class="rail-track"><div data-hf-id="hf-1jud" id="v2-settings-fill-2" class="rail-fill"></div></div><div data-hf-id="hf-y090" id="v2-settings-label-2" class="rail-label">ENGAGE</div></div><div data-hf-id="hf-0e16" class="rail-seg"><div data-hf-id="hf-lmmw" class="rail-track"><div data-hf-id="hf-0s6k" id="v2-settings-fill-3" class="rail-fill"></div></div><div data-hf-id="hf-yibd" id="v2-settings-label-3" class="rail-label">REACT</div></div><div data-hf-id="hf-2dkb" class="rail-seg"><div data-hf-id="hf-iuhp" class="rail-track"><div data-hf-id="hf-o9o3" id="v2-settings-fill-4" class="rail-fill"></div></div><div data-hf-id="hf-1ysy" id="v2-settings-label-4" class="rail-label">COMMENT</div></div><div data-hf-id="hf-2rvc" class="rail-seg"><div data-hf-id="hf-j8sq" class="rail-track"><div data-hf-id="hf-kbk2" id="v2-settings-fill-5" class="rail-fill"></div></div><div data-hf-id="hf-ldid" id="v2-settings-label-5" class="rail-label">SAVE</div></div><div data-hf-id="hf-1ky9" class="rail-seg"><div data-hf-id="hf-jn3r" class="rail-track"><div data-hf-id="hf-gdg1" id="v2-settings-fill-6" class="rail-fill"></div></div><div data-hf-id="hf-rpdz" id="v2-settings-label-6" class="rail-label">TRUST</div></div><div data-hf-id="hf-1z9a" class="rail-seg"><div data-hf-id="hf-k1es" class="rail-track"><div data-hf-id="hf-fls8" id="v2-settings-fill-7" class="rail-fill"></div></div><div data-hf-id="hf-fofi" id="v2-settings-label-7" class="rail-label">X</div></div><div data-hf-id="hf-3ysf" class="rail-seg"><div data-hf-id="hf-nm61" class="rail-track"><div data-hf-id="hf-i0gv" id="v2-settings-fill-8" class="rail-fill"></div></div><div data-hf-id="hf-xapd" id="v2-settings-label-8" class="rail-label">SWIPE</div></div><div data-hf-id="hf-4d3g" class="rail-seg"><div data-hf-id="hf-o0h2" class="rail-track"><div data-hf-id="hf-e2cu" id="v2-settings-fill-9" class="rail-fill"></div></div><div data-hf-id="hf-cczo" id="v2-settings-label-9" class="rail-label">EXIT</div></div></div>
+      </div>
+      <script>
+        const tl = gsap.timeline({ paused: true });
+
+        tl.fromTo("#v2-settings-dots", { x: 0, y: 0 }, { x: -44, y: -22, duration: 8.4, ease: "none" }, 0);
+        tl.fromTo("#v2-settings-glow", { scale: 0.92 }, { scale: 1.06, duration: 4, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+        for (let i = 0; i < 10; i++) tl.set("#v2-settings-fill-" + i, { scaleX: 1 }, 0).set("#v2-settings-label-" + i, { color: "#0f766e" }, 0);
+        tl.fromTo("#v2-settings-top", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0);
+        tl.fromTo("#v2-settings-page", { y: 0 }, { y: -543.4, duration: 5.6, ease: "sine.inOut" }, 0.9);
+        tl.fromTo("#v2-settings-head", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 0.2);
+        tl.fromTo("#v2-settings-title", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, ease: "expo.out" }, 0.3);
+        tl.fromTo("#v2-settings-row-0", { opacity: 0, x: 40, rotation: 1.5 }, { opacity: 1, x: 0, rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, 1.2);
+        tl.fromTo("#v2-settings-row-1", { opacity: 0, x: 40, rotation: 1.5 }, { opacity: 1, x: 0, rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, 2.6);
+        tl.fromTo("#v2-settings-row-2", { opacity: 0, x: 40, rotation: 1.5 }, { opacity: 1, x: 0, rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, 3.4);
+        tl.fromTo("#v2-settings-row-3", { opacity: 0, x: 40, rotation: 1.5 }, { opacity: 1, x: 0, rotation: 0, duration: 0.5, ease: "back.out(1.8)" }, 4.3);
+        window.__timelines["v2-settings"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

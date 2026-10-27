@@ -1,0 +1,230 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          background: #eef3f1;
+          font-family: "Montserrat", sans-serif;
+          color: #13201d;
+        }
+        #title-dots {
+          position: absolute;
+          inset: -40px;
+          background-image: radial-gradient(#0f766e 2.2px, transparent 2.4px);
+          background-size: 44px 44px;
+          opacity: 0.14;
+        }
+        #title-glow {
+          position: absolute;
+          right: -260px;
+          top: -220px;
+          width: 1200px;
+          height: 1200px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(15, 118, 110, 0.32) 0%, rgba(15, 118, 110, 0) 65%);
+        }
+        #title-ghost {
+          position: absolute;
+          right: -40px;
+          bottom: -120px;
+          font-weight: 900;
+          font-size: 420px;
+          letter-spacing: -0.05em;
+          color: #0f766e;
+          opacity: 0.1;
+          line-height: 1;
+        }
+        #title-label {
+          position: absolute;
+          left: 140px;
+          top: 120px;
+          font: 700 26px "JetBrains Mono", monospace;
+          letter-spacing: 0.12em;
+          color: #0f766e;
+        }
+        #title-rule {
+          position: absolute;
+          left: 140px;
+          top: 168px;
+          width: 220px;
+          height: 4px;
+          background: #0f766e;
+          transform-origin: 0 50%;
+        }
+        #title-lockup {
+          position: absolute;
+          left: 140px;
+          top: 300px;
+          display: flex;
+          align-items: center;
+          gap: 40px;
+        }
+        #title-icon {
+          display: block;
+          width: 180px;
+          height: 180px;
+        }
+        #title-word {
+          font-weight: 900;
+          font-size: 140px;
+          letter-spacing: -0.045em;
+          line-height: 1;
+        }
+        #title-lines {
+          position: absolute;
+          left: 140px;
+          top: 560px;
+          width: 1150px;
+        }
+        .title-line {
+          font-weight: 700;
+          font-size: 54px;
+          letter-spacing: -0.02em;
+          line-height: 1.2;
+        }
+        #title-line-2 {
+          color: #0f766e;
+          margin-top: 10px;
+        }
+        #title-meta {
+          position: absolute;
+          left: 140px;
+          bottom: 110px;
+          font: 700 24px "JetBrains Mono", monospace;
+          color: #4b5b57;
+          letter-spacing: 0.06em;
+        }
+        #title-stack {
+          position: absolute;
+          right: 140px;
+          top: 250px;
+          width: 420px;
+          height: 560px;
+        }
+        .title-card {
+          position: absolute;
+          inset: 0;
+          border-radius: 32px;
+          background: #ffffff;
+          border: 3px solid #13201d;
+          padding: 40px;
+        }
+        .title-card .tc-head {
+          display: flex;
+          gap: 18px;
+          align-items: center;
+          margin-bottom: 34px;
+        }
+        .title-card .tc-avatar {
+          width: 72px;
+          height: 72px;
+          border-radius: 50%;
+          background: #99d5c9;
+        }
+        .title-card .tc-name {
+          width: 180px;
+          height: 18px;
+          border-radius: 9px;
+          background: #13201d;
+        }
+        .title-card .tc-line {
+          height: 16px;
+          border-radius: 8px;
+          background: #c9d6d2;
+          margin-bottom: 18px;
+        }
+        .title-card .tc-pic {
+          height: 170px;
+          border-radius: 18px;
+          background: #d5ebe6;
+          margin-top: 28px;
+        }
+        #title-card-back-1 {
+          background: #d5ebe6;
+        }
+        #title-card-back-2 {
+          background: #f5d999;
+        }
+      </style>
+
+      <div data-hf-id="hf-wt3v" id="root" data-composition-id="title" data-width="1920" data-height="1080">
+        <div data-hf-id="hf-4z8e" id="title-dots"></div>
+        <div data-hf-id="hf-7d8g" id="title-glow" data-layout-allow-overflow></div>
+        <div data-hf-id="hf-37cm" id="title-ghost" data-layout-allow-overflow>SWIPE</div>
+
+        <div data-hf-id="hf-kziy" id="title-label">CHROME EXTENSION · HOW TO USE</div>
+        <div data-hf-id="hf-t6vk" id="title-rule"></div>
+
+        <div data-hf-id="hf-ecg4" id="title-lockup">
+          <svg data-hf-id="hf-p8zm" id="title-icon" viewBox="0 0 128 128" aria-hidden="true">
+            <rect data-hf-id="hf-x6hi" x="4" y="4" width="120" height="120" rx="28" fill="#0f766e" />
+            <rect data-hf-id="hf-ibcu" x="34" y="22" width="60" height="84" rx="12" fill="#ffffff" transform="rotate(-8 64 64)" opacity="0.35" />
+            <rect data-hf-id="hf-leeg" x="34" y="22" width="60" height="84" rx="12" fill="#ffffff" />
+            <rect data-hf-id="hf-lpg0" x="44" y="36" width="40" height="6" rx="3" fill="#0f766e" opacity="0.55" />
+            <rect data-hf-id="hf-ik7g" x="44" y="48" width="30" height="6" rx="3" fill="#0f766e" opacity="0.35" />
+            <path data-hf-id="hf-4nzm" d="M30 92 16 78l14-14M98 64l14 14-14 14" fill="none" stroke="#f5b83d" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <div data-hf-id="hf-fikf" id="title-word">Swipe Mode</div>
+        </div>
+
+        <div data-hf-id="hf-0lrr" id="title-lines">
+          <div data-hf-id="hf-et30" class="title-line" id="title-line-1">Read LinkedIn posts one at a time.</div>
+          <div data-hf-id="hf-fw3p" class="title-line" id="title-line-2">You decide every action.</div>
+        </div>
+
+        <div data-hf-id="hf-sx0c" id="title-meta">ONE-MINUTE TOUR</div>
+
+        <div data-hf-id="hf-2gjm" id="title-stack">
+          <div data-hf-id="hf-zzkr" class="title-card" id="title-card-back-2"></div>
+          <div data-hf-id="hf-rbow" class="title-card" id="title-card-back-1"></div>
+          <div data-hf-id="hf-l61w" class="title-card" id="title-card-front">
+            <div data-hf-id="hf-kn72" class="tc-head"><div data-hf-id="hf-5bdf" class="tc-avatar"></div><div data-hf-id="hf-lh0p" class="tc-name"></div></div>
+            <div data-hf-id="hf-livi" class="tc-line" style="width: 100%"></div>
+            <div data-hf-id="hf-v2m5" class="tc-line" style="width: 88%"></div>
+            <div data-hf-id="hf-bfbp" class="tc-line" style="width: 62%"></div>
+            <div data-hf-id="hf-61vc" class="tc-pic"></div>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        const D = 4.5;
+
+        // Ambient: glow breathes, dots drift, ghost word creeps. Finite repeats inside the scene.
+        tl.fromTo("#title-glow", { scale: 0.92, opacity: 0.8 }, { scale: 1.06, opacity: 1, duration: 2.2, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+        tl.fromTo("#title-dots", { x: 0, y: 0 }, { x: -22, y: -14, duration: D, ease: "none" }, 0);
+        tl.fromTo("#title-ghost", { x: 40 }, { x: -30, duration: D, ease: "none" }, 0);
+
+        // Label and rule
+        tl.fromTo("#title-label", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 0.1);
+        tl.fromTo("#title-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "expo.out" }, 0.2);
+
+        // Icon spring-pop, wordmark settles (the one restrained move of the card)
+        tl.fromTo("#title-icon", { scale: 0.4, opacity: 0, rotation: -12 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.7, ease: "back.out(2)" }, 0.25);
+        tl.fromTo("#title-word", { opacity: 0, scale: 0.95, x: -20 }, { opacity: 1, scale: 1, x: 0, duration: 0.7, ease: "power3.out" }, 0.4);
+
+        // Value lines slide up
+        tl.fromTo("#title-line-1", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.95);
+        tl.fromTo("#title-line-2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 1.25);
+        tl.fromTo("#title-meta", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 1.6);
+
+        // Card stack fans out: front card swipes a little left and right, like a decision
+        tl.fromTo("#title-stack", { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.7, ease: "expo.out" }, 0.5);
+        tl.fromTo("#title-card-back-2", { rotation: 0, x: 0 }, { rotation: 9, x: 46, duration: 0.8, ease: "back.out(1.6)" }, 0.8);
+        tl.fromTo("#title-card-back-1", { rotation: 0, x: 0 }, { rotation: 4.5, x: 22, duration: 0.8, ease: "back.out(1.6)" }, 0.88);
+        tl.fromTo("#title-card-front", { rotation: 0, x: 0 }, { rotation: 6, x: 70, duration: 0.7, ease: "power2.inOut" }, 2.0);
+        tl.to("#title-card-front", { rotation: 0, x: 0, duration: 0.8, ease: "back.out(1.4)" }, 2.75);
+
+        window.__timelines["title"] = tl;
+      </script>
+    </template>
+  </body>
+</html>
