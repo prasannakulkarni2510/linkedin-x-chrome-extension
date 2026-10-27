@@ -19,13 +19,11 @@
 
 <p align="center">
   <a href="https://cdn.jsdelivr.net/gh/prasannakulkarni2510/linkedin-x-chrome-extension@main/docs/media/swipe-mode-tutorial.mp4">
-    <img src="docs/media/tutorial-poster.png" width="820" alt="Swipe Mode: your feed, one post at a time. Watch the 2-minute tutorial">
+    <img src="docs/media/tutorial-poster.png" width="820" alt="Swipe Mode: your feed, one post at a time. Watch the 72-second tour">
   </a>
 </p>
 
-https://github.com/user-attachments/assets/84857ef6-d1d7-4890-8d0d-12f9d434f0cb
-
-<p align="center"><sub>The 2-minute tutorial: install, every shortcut, LinkedIn and X.</sub></p>
+<p align="center"><sub>Click to watch the 72-second tour: LinkedIn and X from the keyboard, and tweet screenshots. With voice and subtitles.</sub></p>
 
 ---
 
